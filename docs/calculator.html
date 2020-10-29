@@ -15,6 +15,7 @@
                 <a href="home.html">CHANGE ME</a>
                 <a href="trails.html">CHANGE ME</a>
                 <a href="gear.html">CHANGE ME</a>
+                <button onclick="">User Profile</button>
             </ul>
         </nav>
     </header>
@@ -32,27 +33,27 @@
                         <fieldset>
                             <label>Birthday</label>
                             <br>
-                            <select id=user_bday_month name=user_bday_month aria-placeholder="Month" required>
+                            <select class="dataSelect" id=bday_month name=bday_month required>
                                 <option value="" disabled selected>MM</option>
-                                <option>Jan</option>
-                                <option>Feb</option>
-                                <option>Mar</option>
-                                <option>Apr</option>
-                                <option>May</option>
-                                <option>Jun</option>
-                                <option>Jul</option>
-                                <option>Aug</option>
-                                <option>Sep</option>
-                                <option>Oct</option>
-                                <option>Nov</option>
-                                <option>Dec</option>
+                                <option value="1">Jan</option>
+                                <option value=2>Feb</option>
+                                <option value=3>Mar</option>
+                                <option value=4>Apr</option>
+                                <option value=5>May</option>
+                                <option value=6>Jun</option>
+                                <option value=7>Jul</option>
+                                <option value=8>Aug</option>
+                                <option value=9>Sep</option>
+                                <option value=10>Oct</option>
+                                <option value=11>Nov</option>
+                                <option value=12>Dec</option>
                             </select>
-                            <select id=user_bday_day name=user_bday_day required>
+                            <select class="dataSelect" id=bday_day name=bday_day required>
                                 <option value="" disabled selected>DD</option>
                             </select>
 
 
-                            <select id="user_bday_year" name="user_bday_year" required>
+                            <select class="dataSelect" id="bday_year" name="bday_year" required>
                                 <option value="" disabled selected>YYYY</option>
                             </select>
                         </fieldset>
@@ -62,10 +63,10 @@
                         <fieldset>
                             <label>Height</label>
                             <br>
-                            <select id="user_height_feet" name="user_height_feet" required>
+                            <select class="dataSelect" id="height_feet" name="height_feet" required>
                                 <option value="" disabled selected>--</option>
                             </select> Feet
-                            <select id="user_height_inches" name="user_height_inches" required>
+                            <select class="dataSelect" id="height_inches" name="height_inches" required>
                                 <option value="" disabled selected>--</option>
                             </select> Inches
                         </fieldset>
@@ -74,7 +75,7 @@
                         <fieldset>
                             <label>Weight</label>
                             <br>
-                            <select id="user_weight_pounds" name="user_weight_pounds" required>
+                            <select class="dataSelect" id="weight_pounds" name="weight_pounds" required>
                                 <option value="" disabled selected>--</option>
                             </select> Pounds
                         </fieldset>
@@ -85,26 +86,26 @@
                             <br>
 
                             <label class="radio_block" for="sedentary">
-                                <input type="radio" id="sedentary" name="user_activity_level" value="sedentary"
-                                    required>
+                                <input type="radio" id="sedentary" name="activity_level" class="dataRadio"
+                                    value="sedentary" required checked>
                                 Sedentary
                             </label>
 
                             <label class="radio_block" for="lightly_active">
-                                <input type="radio" id="lightly_active" name="user_activity_level"
+                                <input type="radio" id="lightly_active" name="activity_level" class="dataRadio"
                                     value="lightly active" required>
                                 Lightly Active
                             </label>
 
                             <label class="radio_block" for="moderately_active">
-                                <input type="radio" id="moderately_active" name="user_activity_level"
+                                <input type="radio" id="moderately_active" name="activity_level" class="dataRadio"
                                     value="moderately active" required>
                                 Moderately Active
                             </label>
 
                             <label class="radio_block" for="highly_active">
-                                <input type="radio" id="highly_active" name="user_activity_level" value="highly active"
-                                    required>
+                                <input type="radio" id="highly_active" name="activity_level" class="dataRadio"
+                                    value="highly active" required>
                                 Highly Active
                             </label>
 
