@@ -18,6 +18,104 @@
             </ul>
         </nav>
     </header>
+    <main>
+        <br>
+        <h1 id="page_header"><strong>Fitness Level Calculator</strong></h1>
+
+        <div class="form">
+            <!-- return false to prevent form refreshing page -->
+            <form id="user_form" onsubmit="return false">
+                <fieldset id="outer_fieldset">
+                    <legend>Enter Basic User Information</legend>
+
+                    <div>
+                        <fieldset>
+                            <label>Birthday</label>
+                            <br>
+                            <select id=user_bday_month name=user_bday_month aria-placeholder="Month" required>
+                                <option value="" disabled selected>MM</option>
+                                <option>Jan</option>
+                                <option>Feb</option>
+                                <option>Mar</option>
+                                <option>Apr</option>
+                                <option>May</option>
+                                <option>Jun</option>
+                                <option>Jul</option>
+                                <option>Aug</option>
+                                <option>Sep</option>
+                                <option>Oct</option>
+                                <option>Nov</option>
+                                <option>Dec</option>
+                            </select>
+                            <select id=user_bday_day name=user_bday_day required>
+                                <option value="" disabled selected>DD</option>
+                            </select>
+
+
+                            <select id="user_bday_year" name="user_bday_year" required>
+                                <option value="" disabled selected>YYYY</option>
+                            </select>
+                        </fieldset>
+                    </div>
+
+                    <div>
+                        <fieldset>
+                            <label>Height</label>
+                            <br>
+                            <select id="user_height_feet" name="user_height_feet" required>
+                                <option value="" disabled selected>--</option>
+                            </select> Feet
+                            <select id="user_height_inches" name="user_height_inches" required>
+                                <option value="" disabled selected>--</option>
+                            </select> Inches
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <label>Weight</label>
+                            <br>
+                            <select id="user_weight_pounds" name="user_weight_pounds" required>
+                                <option value="" disabled selected>--</option>
+                            </select> Pounds
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <label>Daily Activity Level</label>
+                            <br>
+
+                            <label class="radio_block" for="sedentary">
+                                <input type="radio" id="sedentary" name="user_activity_level" value="sedentary"
+                                    required>
+                                Sedentary
+                            </label>
+
+                            <label class="radio_block" for="lightly_active">
+                                <input type="radio" id="lightly_active" name="user_activity_level"
+                                    value="lightly active" required>
+                                Lightly Active
+                            </label>
+
+                            <label class="radio_block" for="moderately_active">
+                                <input type="radio" id="moderately_active" name="user_activity_level"
+                                    value="moderately active" required>
+                                Moderately Active
+                            </label>
+
+                            <label class="radio_block" for="highly_active">
+                                <input type="radio" id="highly_active" name="user_activity_level" value="highly active"
+                                    required>
+                                Highly Active
+                            </label>
+
+                        </fieldset>
+                    </div>
+
+                    <button onclick="submitData();">Calculate Fitness Level!</button>
+                </fieldset>
+            </form>
+        </div>
+    </main>
 </body>
 
 </html>
