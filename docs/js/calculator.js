@@ -1,0 +1,1 @@
+// Handles form input and calculations of calculator.html page
