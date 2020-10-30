@@ -19,12 +19,14 @@
 <body>
    
    <script src="js/hike.js"></script>
-   <form>
+   <script src="js/googleMaps.js"></script>
+
+   <form id="toGoogleMaps" action="http://maps.google.com/maps" method="get">
       <label>From:</label>
       <input id="from" type="text">
       <label>To:</label>
       <input id="to" type="text">
    </form>
-   <button type="button">Get Directions</button>
+   <button type="button" onclick="getDirections()">Get Directions</button>
 </body>
 </html>
