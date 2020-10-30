@@ -34,7 +34,26 @@
    list-style-position: inside;
 }
 
+/*******************************/
 /* For customizing Semantic UI */
+/*******************************/
+.ui.fixed.secondary.menu {
+   background-color: #ffffff;
+}
+
+.ui.secondary.menu .header.item:hover {
+   background-color: #ffffff;
+}
+
+.ui.secondary.menu .item.active {
+   background-color: #67da6a;
+   color: #ffffff;
+}
+
+.ui.main.container {
+   margin-top: 7em;
+}
+
 .ui.footer.segment {
    margin: 10em 0em 0em 0em;
    padding: 5em 0em;
