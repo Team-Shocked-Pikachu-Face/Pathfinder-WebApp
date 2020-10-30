@@ -17,14 +17,15 @@
 </head>
 
 <body>
-    <header>
-        <!-- TODO: Implement navbar -->
-        <nav class="topnav">
-            <ul>
-                <a href="index.html">IMPLEMENT NAVBAR</a>
-                <button onclick="window.location.href='profile.html';">User Profile</button>
-            </ul>
-        </nav>
+    <header class="ui fixed secondary menu">
+        <div class="ui container">
+            <a href="index.html" class="header item">Pathfinder</a>
+            <a href="index.html" class="item">Home</a>
+            <a href="hike.html" class="item">Hike</a>
+            <div class="right menu">
+                <button class="ui inverted green button" onclick="window.location.href='profile.html';">User Profile</button>
+            </div>
+        </div>
     </header>
 
     <main class="ui main text container">
@@ -66,7 +67,6 @@
         <div class="ui center aligned container">
             © 2020 OSU CS361 Team Shocked Pikachu Face
         </div>
-      <div>
     </footer>  
 
     <script src="./js/profile.js"></script>
