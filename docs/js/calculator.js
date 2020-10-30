@@ -71,10 +71,15 @@ function fill_form() {
 
 // parses JSON user data and returns JS object
 function getUserData() {
-    console.log("retrieving user data");
-    userData = JSON.parse(sessionStorage.userProfile);
-    console.log(userData);
-    return userData;
+    if (sessionStorage.userProfile) {
+        console.log("user data retrieval successful");
+        userData = JSON.parse(sessionStorage.userProfile);
+        console.log(userData);
+        return userData;
+    } else {
+        console.log("no user data");
+        return null;
+    }
 }
 
 // Submits data of "user_form". Validates data and places into "userProfile", which is stored in sessionStorage
