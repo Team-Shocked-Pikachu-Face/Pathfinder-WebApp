@@ -138,19 +138,18 @@ function submitData() {
 
 // Creates a div to display fitness level. If div already exists, updates fitness level within div.
 function displayFitness(fitnessLevel) {
-    yourResult = document.getElementById("yourResultText");
+    const yourResult = document.getElementById("yourResultText");
     yourResult.hidden = false;
     var fitnessDisplay = document.getElementById("fitness_result");
     if (typeof fitnessDisplay != "undefined" && fitnessDisplay != null) {
         fitnessDisplay.textContent = fitnessLevel;
     } else {
-        fitnessDisplay = document.createElement("div");
+        fitnessDisplay = document.createElement("span");
         fitnessDisplay.setAttribute("id", "fitness_result");
         fitnessDisplay.textContent = fitnessLevel;
 
         // add the newly created element and its content into the DOM
-        const parentDiv = document.getElementById("user_form");
-        parentDiv.insertBefore(fitnessDisplay, null);
+        yourResult.insertBefore(fitnessDisplay, null);
     }
 
     // change color of result
