@@ -10,13 +10,13 @@ const currentYear = currentTime.getFullYear();
 // on window load: display form with prefilled values
 window.onload = () => {
     // Populate drop-down lists
-    populateSelectOptions("bday_day", 1, 31);
     populateSelectOptions(
         "bday_year",
         currentYear - 100,
         currentYear,
         (reverse = true)
     );
+    populateSelectOptions("bday_day", 1, 31);
     populateSelectOptions("height_feet", 1, 7);
     populateSelectOptions("height_inches", 0, 12);
     populateSelectOptions("weight_pounds", 1, 300);
@@ -51,39 +51,39 @@ function populateSelectOptions(
 
 // if user data exists in browser, prepopulate form with previous values
 function fill_form() {
-    user_data = getUserData();
-    if (user_data) {
-        selects = document.getElementsByClassName("dataSelect");
+    userData = getUserData();
+    if (userData) {
+        selects = document.getElementsByClassName("data_select");
         Array.from(selects).forEach((element) => {
-            element.value = user_data[element.id];
+            element.value = userData[element.id];
         });
 
         // pre-check any radio buttons from previously submitted user data
-        radios = document.getElementsByClassName("dataRadio");
+        radios = document.getElementsByClassName("data_radio");
         Array.from(radios).forEach((element) => {
-            if (user_data[element.name] == element.value) {
+            if (userData[element.name] == element.value) {
                 element.checked = true;
             }
         });
-        displayFitness(user_data.fitness_level);
+        displayFitness(userData.fitness_level);
     }
 }
 
 // parses JSON user data and returns JS object
 function getUserData() {
     console.log("retrieving user data");
-    user_data = JSON.parse(sessionStorage.user_profile);
-    console.log(user_data);
-    return user_data;
+    userData = JSON.parse(sessionStorage.userProfile);
+    console.log(userData);
+    return userData;
 }
 
 // Submits data of "user_form". Validates data and places into "userProfile", which is stored in sessionStorage
 function submitData() {
-    console.log("submitting DATA");
+    console.log("Attempting to submit data");
 
     // create user_profile object from datafields
     try {
-        var user_profile = {
+        var userProfile = {
             bday_month: document.getElementById("bday_month").value,
             bday_day: document.getElementById("bday_day").value,
             bday_year: document.getElementById("bday_year").value,
@@ -100,49 +100,48 @@ function submitData() {
     }
 
     // check that the user selected values for dropdown lists
-    for (key in user_profile) {
-        if (user_profile[key] === "") {
+    for (key in userProfile) {
+        if (userProfile[key] === "") {
             console.error("Empty select list");
             return;
         }
     }
 
     // calculate user age and BMI
-    user_profile.age = currentYear - parseInt(user_profile.bday_year);
-    user_profile.height_total_inches =
-        12 * parseInt(user_profile.height_feet) +
-        parseInt(user_profile.height_inches);
-    user_profile.bmi = calculateBMI(
-        user_profile.weight_pounds,
-        user_profile.height_total_inches
+    userProfile.age = currentYear - parseInt(userProfile.bday_year);
+    userProfile.height_total_inches =
+        12 * parseInt(userProfile.height_feet) +
+        parseInt(userProfile.height_inches);
+    userProfile.bmi = calculateBMI(
+        userProfile.weight_pounds,
+        userProfile.height_total_inches
     );
-    user_profile.fitness_level = calculateFitness(
-        user_profile.bmi,
-        user_profile.age,
-        user_profile.activity_level
+    userProfile.fitness_level = calculateFitness(
+        userProfile.bmi,
+        userProfile.age,
+        userProfile.activity_level
     );
 
-    console.log("user_profile:\n", user_profile);
-    displayFitness(user_profile.fitness_level);
+    console.log("user_profile:\n", userProfile);
+    displayFitness(userProfile.fitness_level);
 
     // store data in browser
     console.log("storing data to session storage");
-    sessionStorage.user_profile = JSON.stringify(user_profile);
-    sessionStorage.fitness_level = JSON.stringify(user_profile.fitness_level);
+    sessionStorage.userProfile = JSON.stringify(userProfile);
+    sessionStorage.fitnessLevel = JSON.stringify(userProfile.fitness_level);
 }
 
 // Creates a div to display fitness level. If div already exists, updates fitness level within div.
-function displayFitness(fitness_level) {
+function displayFitness(fitnessLevel) {
     yourResult = document.getElementById("yourResultText");
-    console.log(yourResult);
     yourResult.hidden = false;
     var fitnessDisplay = document.getElementById("fitness_result");
     if (typeof fitnessDisplay != "undefined" && fitnessDisplay != null) {
-        fitnessDisplay.textContent = fitness_level;
+        fitnessDisplay.textContent = fitnessLevel;
     } else {
         fitnessDisplay = document.createElement("div");
         fitnessDisplay.setAttribute("id", "fitness_result");
-        fitnessDisplay.textContent = fitness_level;
+        fitnessDisplay.textContent = fitnessLevel;
 
         // add the newly created element and its content into the DOM
         const parentDiv = document.getElementById("user_form");
@@ -150,11 +149,11 @@ function displayFitness(fitness_level) {
     }
 
     // change color of result
-    if (fitness_level == "Low Fitness") {
+    if (fitnessLevel == "Low Fitness") {
         fitnessDisplay.style.color = "red";
-    } else if (fitness_level == "Medium Fitness") {
+    } else if (fitnessLevel == "Medium Fitness") {
         fitnessDisplay.style.color = "orange";
-    } else if (fitness_level == "High Fitness") {
+    } else if (fitnessLevel == "High Fitness") {
         fitnessDisplay.style.color = "green";
     }
 }
@@ -196,7 +195,7 @@ function calculateFitness(bmi, age, activity_level) {
         fitness_points -= 1;
     }
 
-    if (age > 70 || age < 10) {
+    if (age > 70 || age < 6) {
         fitness_points -= 1;
     }
 
