@@ -1,6 +1,7 @@
 let getDirections = () => {
 	fromLocation = document.getElementById("from").value;
 	toLocation = document.getElementById("to").value;
-	console.log(fromLocation);
-	console.log(toLocation);
+
+	// redirect using the submit form
+	document.getElementById("toGoogleMaps").submit();
 }
