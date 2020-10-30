@@ -24,3 +24,12 @@
    background-color: #ddd;
    color: black;
  }
+
+ /*align feature list div*/
+ .features {
+    text-align: center;
+ }
+ /*Center feature list bullets, will change*/
+ .features ul {
+    list-style-position: inside;
+ }
