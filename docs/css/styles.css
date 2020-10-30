@@ -27,7 +27,7 @@
 
 /*align feature list div*/
 .features {
-   text-align: center;
+   text-align: left;
 }
 /*Center feature list bullets, will change*/
 .features ul {
@@ -38,6 +38,7 @@
 /* For customizing Semantic UI */
 /*******************************/
 .ui.fixed.secondary.menu {
+   padding: 0.5em 0.5em;
    background-color: #ffffff;
 }
 
@@ -51,16 +52,28 @@
 }
 
 .ui.main.container {
-   margin-top: 7em;
+   margin-top: 3em;
 }
 
 .ui.footer.segment {
    margin: 10em 0em 0em 0em;
    padding: 5em 0em;
-   background-color: #67da6a;
+   background-color: #a3b4a4;
 }
 
 .ui.very.basic.table tr td:first-child {
    color: #32b136;
    font-weight: bold;
+}
+
+.ui.inverted.masthead {
+   margin-top: 5em;
+   height: 25em;
+   background-color: #2d8f33;
+   background-image: url('../images/sample.jpg') !important;
+   background-size: cover !important;
+   background-position: center center; 
+}
+.ui.inverted.masthead .ui.container {
+   margin: 5em 0em 0em 0em;
 }
