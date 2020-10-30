@@ -17,19 +17,26 @@
 .topnav a.active {
    background-color: #67da6a;
    color: white;
- }
+}
  
 /* Change the color of each menu option when hovered over */
 .topnav a:hover {
    background-color: #ddd;
    color: black;
- }
+}
 
- /*align feature list div*/
- .features {
-    text-align: center;
- }
- /*Center feature list bullets, will change*/
- .features ul {
-    list-style-position: inside;
- }
+/*align feature list div*/
+.features {
+   text-align: center;
+}
+/*Center feature list bullets, will change*/
+.features ul {
+   list-style-position: inside;
+}
+
+/* For customizing Semantic UI */
+.ui.footer.segment {
+   margin: 10em 0em 0em 0em;
+   padding: 5em 0em;
+   background-color: #67da6a;
+}
