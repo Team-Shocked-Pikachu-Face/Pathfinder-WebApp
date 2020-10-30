@@ -1,30 +1,3 @@
-/* Determine the location of the topnav menu */
-.topnav {
-   text-align: center;
-   padding-top: 40px;
-}
-
-/* Determine the size, color and location of each element on the menu */
-.topnav a {
-   color:rgb(151, 151, 151);
-   font-weight: 800;
-   padding: 30px;
-   font-size: 30px;
-   text-decoration: none;
-}
-
-/* Show which page is active by changing its color */
-.topnav a.active {
-   background-color: #67da6a;
-   color: white;
-}
- 
-/* Change the color of each menu option when hovered over */
-.topnav a:hover {
-   background-color: #ddd;
-   color: black;
-}
-
 /*align feature list div*/
 .features {
    text-align: left;
@@ -58,7 +31,7 @@
 .ui.footer.segment {
    margin: 10em 0em 0em 0em;
    padding: 5em 0em;
-   background-color: #a3b4a4;
+   background-color: #a3b4a4 
 }
 
 .ui.very.basic.table tr td:first-child {
