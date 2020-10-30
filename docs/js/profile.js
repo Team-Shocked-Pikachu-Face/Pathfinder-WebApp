@@ -30,21 +30,21 @@ function displayUserSummary(userData){
         console.log(`${attribute}: ${userData[attribute]}`)
     }
     birthdate = document.getElementById("birthdate");
-    birthdate.textContent = `Date of Birth: ${userData["bday_month"]}/${userData["bday_day"]}/${userData["bday_year"]}`
+    birthdate.textContent = `${userData["bday_month"]}/${userData["bday_day"]}/${userData["bday_year"]}`
     birthdate = document.getElementById("height");
-    birthdate.textContent = `Height: ${userData["height_feet"]} '${userData["height_inches"]}" (${userData["height_total_inches"]} inches)`
+    birthdate.textContent = `${userData["height_feet"]} '${userData["height_inches"]}" (${userData["height_total_inches"]} inches)`
 
     birthdate = document.getElementById("weight");
-    birthdate.textContent = `Weight: ${userData["weight_pounds"]} pounds`
+    birthdate.textContent = `${userData["weight_pounds"]} pounds`
 
     birthdate = document.getElementById("bmi");
-    birthdate.textContent = `BMI: ${parseFloat(userData["bmi"]).toFixed(2)} `
+    birthdate.textContent = `${parseFloat(userData["bmi"]).toFixed(2)} `
 
     birthdate = document.getElementById("activity_level");
-    birthdate.textContent = `Activity Level: ${userData["activity_level"]} `
+    birthdate.textContent = `${userData["activity_level"]} `
 
     birthdate = document.getElementById("fitness_level");
-    birthdate.textContent = `Fitness Level: ${userData["fitness_level"]} `
+    birthdate.textContent = `${userData["fitness_level"]} `
 
 
 
