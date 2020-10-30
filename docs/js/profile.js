@@ -1,14 +1,12 @@
 window.onload = () => {
-    // Populate drop-down lists
     userData = getUserData();
-    if (!userData) {
-        console.log("USER DATA NOT FOUND - redirecting to calculator form");
-        window.location.href = "calculator.html";  
-    } 
-    else{
-        console.log("USER DATA FOUND - continuing with profile page")
+
+    try {
         displayUserSummary(userData);
+    } catch (error) {
+        console.error("Please navigate to this page via user button")
     }
+    
 };
 
 function getUserData() {
