@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
 </head>
+
 <body>
-    <div id='fitness_level'></div>
+    <header>
+        <!-- TODO: Implement navbar -->
+        <nav class="topnav">
+            <ul>
+                <a href="index.html">IMPLEMENT NAVBAR</a>
+                <button onclick="window.location.href='profile.html';">User Profile</button>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <ul id="user_summary">User Summary:
+            <li class="user_attribute" id="birthdate"></li>
+            <li class="user_attribute" id="height"></li>
+            <li class="user_attribute" id="weight"></li>
+            <li class="user_attribute" id="bmi"></li>
+            <li class="user_attribute" id="activity_level"></li>
+            <li class="user_attribute" id="fitness_level"></li>
+        </ul>
+        <!-- Directs user to form page with previously filled data values -->
+        <button onclick="window.location.href='calculator.html';">Update Information</button>
+    </main>
+
     <script src="./js/profile.js"></script>
 </body>
+
 </html>

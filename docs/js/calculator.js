@@ -176,13 +176,13 @@ function calculateBMI(weight, height) {
  */
 function calculateFitness(bmi, age, activity_level) {
     var fitness_points = 0;
-    if (activity_level == "sedentary") {
+    if (activity_level == "Sedentary") {
         fitness_points = 1;
-    } else if (activity_level == "lightly active") {
+    } else if (activity_level == "Lightly Active") {
         fitness_points = 2;
-    } else if (activity_level == "moderately active") {
+    } else if (activity_level == "Moderately Active") {
         fitness_points = 3;
-    } else if (activity_level == "highly active") {
+    } else if (activity_level == "Highly Active") {
         fitness_points = 4;
     }
 
