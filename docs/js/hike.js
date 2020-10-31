@@ -36,6 +36,9 @@ function geolocate()
          // Print to the console for testing
          console.log(latitude); 
          console.log(longitude); 
+
+         //call getNearbyTrails() for hiking API
+         // getNearbyTrails(latitude, longitude);
       } 
       // Provide an error id the address does not exist
       else 
@@ -83,6 +86,22 @@ function autoComplete()
    }
    });
 }
+
+/*IN PROGRESS: get all nearby trails based on 15 miles from Hiking API  */
+let getNearbyTrails = () => {
+   latitude = 40.0274
+   latitude = latitude.toString();
+   latitude += '&'
+   longitude = -105.2519
+   longitude = longitude.toString();
+   longitude += '&'
+   hikingAPIURL = 'https://cors-anywhere.herokuapp.com/https://hikingproject.com/data/get-trails?lat='+latitude+'lon='+longitude+'&maxDistance=15&key=200963130-d1165a7ae0baf0bddd35de87f1df233e'
+   console.log(hikingAPIURL)
+   fetch(hikingAPIURL, {method:'GET', headers:{'Access-Control-Allow-Origin': '*'}})
+   .then(response => response.json())
+   .then(data => console.log(data))
+}
+getNearbyTrails();
 
 // start the autocomplete functionality when the page loads
 google.maps.event.addDomListener(window, 'load', autoComplete);
