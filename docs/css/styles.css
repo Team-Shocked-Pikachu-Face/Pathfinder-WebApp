@@ -19,13 +19,14 @@
    background-color: #ffffff;
 }
 
-.ui.secondary.menu .item.active {
+.ui.secondary.menu .active.item, 
+.ui.secondary.menu .active.item:hover {
    background-color: #67da6a;
    color: #ffffff;
 }
 
 .ui.main.container {
-   margin-top: 3em;
+   margin-top: 5em;
 }
 
 .ui.footer.segment {
