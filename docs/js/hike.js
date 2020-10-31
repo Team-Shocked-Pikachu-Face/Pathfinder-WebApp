@@ -38,7 +38,7 @@ function geolocate()
          console.log(longitude); 
 
          //call getNearbyTrails() for hiking API
-         // getNearbyTrails(latitude, longitude);
+         getNearbyTrails(latitude, longitude);
       } 
       // Provide an error id the address does not exist
       else 
@@ -87,21 +87,47 @@ function autoComplete()
    });
 }
 
+/*IN PROGRESS: create divs for each trail with trail info*/
+let buildTrails = (trails, latString, lonString) => {
+   console.log(trails);
+   parentDiv = document.getElementById("trails");
+   for (i in trails) {
+     //create a trail div to hold all trail information
+     let newTrailDiv = document.createElement("div");
+     //create img element for trail photo
+     let trailImage = document.createElement("img");
+     //add the image source
+     trailImage.src = trails[i].imgSmallMed;
+     //append img element to newTrailDiv
+     newTrailDiv.appendChild(trailImage);
+     //create trail name header element
+     let trailName = document.createElement("h2");
+     //put name of trail in header
+     let trailNameText = document.createTextNode(trails[i].name)
+     //add trail name text to trail name h2 element
+     trailName.appendChild(trailNameText);
+     //append trail name to main trail div
+     newTrailDiv.appendChild(trailName)
+     let trailLocation = document.createElement("p");
+     let trailLocationText = document.createTextNode(trails[i].location+" Lat: "+latString+" Lon: "+lonString)
+     trailLocation.appendChild(trailLocationText);
+     newTrailDiv.append(trailLocation);
+     //append newly created trail div to the main trails div holder on hike.html
+     parentDiv.appendChild(newTrailDiv);
+   }
+
+}
+
 /*IN PROGRESS: get all nearby trails based on 15 miles from Hiking API  */
-let getNearbyTrails = () => {
-   latitude = 40.0274
-   latitude = latitude.toString();
-   latitude += '&'
-   longitude = -105.2519
-   longitude = longitude.toString();
-   longitude += '&'
-   hikingAPIURL = 'https://cors-anywhere.herokuapp.com/https://hikingproject.com/data/get-trails?lat='+latitude+'lon='+longitude+'&maxDistance=15&key=200963130-d1165a7ae0baf0bddd35de87f1df233e'
+let getNearbyTrails = (latitude, longitude) => {
+   latString = latitude.toString();
+   lonString = longitude.toString();
+   hikingAPIURL = 'https://cors-anywhere.herokuapp.com/https://hikingproject.com/data/get-trails?lat='+latString+'&lon='+lonString+'&maxDistance=15&key=200963130-d1165a7ae0baf0bddd35de87f1df233e'
    console.log(hikingAPIURL)
    fetch(hikingAPIURL, {method:'GET', headers:{'Access-Control-Allow-Origin': '*'}})
    .then(response => response.json())
-   .then(data => console.log(data))
+   .then((data) => {buildTrails(data.trails, latString, lonString)})
 }
-getNearbyTrails();
 
 // start the autocomplete functionality when the page loads
 google.maps.event.addDomListener(window, 'load', autoComplete);
