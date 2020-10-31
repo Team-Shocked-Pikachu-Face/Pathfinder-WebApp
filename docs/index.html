@@ -40,25 +40,29 @@
             <h2>Feature 1: User input and user fitness estimation</h2>
             <ul>
                 <li>
-                User can click on the calculate fitness button, which takes them to the user profile page 
-                <button class="ui button" onclick="window.location.href='profile.html';">User Profile</button>
+                Clicking on the <a onclick="profileButtonRedirect();">User Profile</a> will take you to your profile page .
+                  <ul>
+                     <li>If you are a first time user, you will be asked to calculate your fitness level.</li>
+                     <li>Click the 'Get Started' button above to create a profile!</li>
+                  </ul>
                 </li>
+                <li>The user profile page shows your fitness level and a summary about you.</li>
+                <li>Your fitness level can be used to filter trails that we think will best fit you.</li>
             </ul>
-            <h2>Feature 2 (Sprint 3 Partial Implementation): Show user nearby trails</h2>
+            <h2>Feature 2 (Sprint 3 Partial Implementation): Show nearby hiking trails</h2>
             <ul>
-                <li>User clicks on the hike tab on top menu bar and is brought to the <a>Hike Page(Link here)</a></li>
-                <li>User is on the <a>Hike page(Link here)</a> and enters zip code into the search bar
+                <li>To view trails nearby, click on the <a href="hike.html">Hike Tab</a> at the top.</li>
+                <li>After being located to the <a href="hike.html">Hike page</a>, enter your zipcode in the search bar.
                 <ul>
-                    <li>The user's location is then stored to search for hikes within a radius</li>
+                    <li>A list of nearby trails within a 15 mile radius will be shown down below.</li>
                 </ul>
                 </li>
-                <li>User can click on the Calculate Fitness Button and be redirected to the <a>user information page</a></li>
             </ul>
-            <h2>Feature 4: User can find directions to a trailhead from zipcode</h2>
+            <h2>Feature 4: Find map directions to a trailhead from a zipcode.</h2>
             <ul>
-                <li>User enters the zip code of their current location into the From: form field on each nearby trail.
+                <li>When on the <a href="hike.html">Hike Page</a>, you can click the 'Get Directions' button on a nearby trail for map directions.
                 <ul>
-                    <li>The user can click "Get Directions" and be sent to Google maps, displaying a route to the trailhead</li>
+                    <li>You can enter a different starting zip code into the From: box to see directions from another location.</li>
                 </ul>
                 </li>
             </ul>
