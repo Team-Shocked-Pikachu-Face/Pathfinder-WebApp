@@ -12,6 +12,8 @@ document.getElementById("Hike_Search_Bar")
 // initialize variables to store the user location
 var latitude; 
 var longitude; 
+//array to store nearby trails
+let trailArray = [];
 
 /*Summary: geolocate uses the address the user typed into the search bar and sends it to Google's geocoder. The Geocoder returns the latitude and longitude of the address entered. */
 function geolocate()
@@ -88,34 +90,82 @@ function autoComplete()
 }
 
 /*IN PROGRESS: create divs for each trail with trail info*/
-let buildTrails = (trails, latString, lonString) => {
-   console.log(trails);
+let makeTrailDivs = (trails) => {
    parentDiv = document.getElementById("trails");
    for (i in trails) {
      //create a trail div to hold all trail information
      let newTrailDiv = document.createElement("div");
+     newTrailDiv.id = "trail"+i.toString();
      //create img element for trail photo
      let trailImage = document.createElement("img");
      //add the image source
-     trailImage.src = trails[i].imgSmallMed;
-     //append img element to newTrailDiv
-     newTrailDiv.appendChild(trailImage);
+     trailImage.src = trails[i].photo;
+
      //create trail name header element
      let trailName = document.createElement("h2");
-     //put name of trail in header
      let trailNameText = document.createTextNode(trails[i].name)
-     //add trail name text to trail name h2 element
      trailName.appendChild(trailNameText);
-     //append trail name to main trail div
      newTrailDiv.appendChild(trailName)
+     
+     //create trail location paragraph
      let trailLocation = document.createElement("p");
-     let trailLocationText = document.createTextNode(trails[i].location+" Lat: "+latString+" Lon: "+lonString)
+     let trailLocationText = document.createTextNode(trails[i].location);
      trailLocation.appendChild(trailLocationText);
      newTrailDiv.append(trailLocation);
+     
+     //create trail latitude/longitude paragraph element
+     let trailLatLon = document.createElement("p");
+     let trailLatLonText = document.createTextNode("Lat: "+trails[i].latitude+" Long: "+trails[i].longitude);
+     trailLatLon.appendChild(trailLatLonText);
+     newTrailDiv.appendChild(trailLatLon);
+     
+     //create trail length paragraph element
+     let trailLength = document.createElement("p");
+     let trailLengthText = document.createTextNode("Length: "+trails[i].length+" miles");
+     trailLength.appendChild(trailLengthText);
+     newTrailDiv.appendChild(trailLength);
+
+     //append img element to newTrailDiv
+     newTrailDiv.appendChild(trailImage);
      //append newly created trail div to the main trails div holder on hike.html
      parentDiv.appendChild(newTrailDiv);
    }
 
+}
+
+class Trail {
+   constructor(length, lat, lon, highestElevation, elevationGain, difficulty, photo, name, location) {
+      this.length = length;
+      this.latitude = lat;
+      this.longitude = lon;
+      this.highestElevation = highestElevation;
+      this.elevationGain = elevationGain;
+      this.difficulty = difficulty;
+      this.photo = photo;
+      this.name = name;
+      this.location = location;
+   }
+}
+
+/*Builds trail objects from API call of getNearbyTrails() */
+let buildTrails = (trails) => {
+   trailArray.length = 0;
+   for (i in trails) {
+      let newTrail = new Trail(
+         trails[i].length, 
+         trails[i].latitude, 
+         trails[i].longitude, 
+         trails[i].high,
+         trails[i].high - trails[i].low,
+         trails[i].difficulty,
+         trails[i].imgSmallMed,
+         trails[i].name,
+         trails[i].location
+      );
+      trailArray.push(newTrail);
+   }
+   console.log(trailArray);
+   makeTrailDivs(trailArray);
 }
 
 /*IN PROGRESS: get all nearby trails based on 15 miles from Hiking API  */
@@ -126,7 +176,7 @@ let getNearbyTrails = (latitude, longitude) => {
    console.log(hikingAPIURL)
    fetch(hikingAPIURL, {method:'GET', headers:{'Access-Control-Allow-Origin': '*'}})
    .then(response => response.json())
-   .then((data) => {buildTrails(data.trails, latString, lonString)})
+   .then((data) => {buildTrails(data.trails)})
 }
 
 // start the autocomplete functionality when the page loads
