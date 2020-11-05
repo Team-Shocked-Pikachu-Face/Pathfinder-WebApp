@@ -95,11 +95,14 @@ let makeTrailDivs = (trails) => {
    for (i in trails) {
      //create a trail div to hold all trail information
      let newTrailDiv = document.createElement("div");
+     newTrailDiv.className = "one column centered row"
      newTrailDiv.id = "trail"+i.toString();
      //create img element for trail photo
      let trailImage = document.createElement("img");
      //add the image source
      trailImage.src = trails[i].photo;
+     //append img element to newTrailDiv
+     newTrailDiv.appendChild(trailImage);
 
      //create trail name header element
      let trailName = document.createElement("h2");
@@ -115,9 +118,15 @@ let makeTrailDivs = (trails) => {
      
      //create trail latitude/longitude paragraph element
      let trailLatLon = document.createElement("p");
-     let trailLatLonText = document.createTextNode("Lat: "+trails[i].latitude+" Long: "+trails[i].longitude);
+     let trailLatLonText = document.createTextNode("Lat: "+trails[i].latitude+"     Lon: "+trails[i].longitude);
      trailLatLon.appendChild(trailLatLonText);
      newTrailDiv.appendChild(trailLatLon);
+
+     //create trail difficulty element
+     let trailDiff = document.createElement("p");
+     let trailDiffText = document.createTextNode(trails[i].difficulty);
+     trailDiff.appendChild(trailDiffText);
+     newTrailDiv.appendChild(trailDiff);
      
      //create trail length paragraph element
      let trailLength = document.createElement("p");
@@ -125,8 +134,6 @@ let makeTrailDivs = (trails) => {
      trailLength.appendChild(trailLengthText);
      newTrailDiv.appendChild(trailLength);
 
-     //append img element to newTrailDiv
-     newTrailDiv.appendChild(trailImage);
      //append newly created trail div to the main trails div holder on hike.html
      parentDiv.appendChild(newTrailDiv);
    }
@@ -151,6 +158,13 @@ class Trail {
 let buildTrails = (trails) => {
    trailArray.length = 0;
    for (i in trails) {
+      if (trails[i].difficulty === 'black') {
+         trails[i].difficulty = 'HARD';
+      } else if (trails[i].difficulty === 'blue') {
+         trails[i].difficulty = 'MEDIUM';
+      } else if (trails[i].difficulty === 'green') {
+         trails[i].difficulty = 'EASY';
+      }
       let newTrail = new Trail(
          trails[i].length, 
          trails[i].latitude, 
@@ -158,13 +172,12 @@ let buildTrails = (trails) => {
          trails[i].high,
          trails[i].high - trails[i].low,
          trails[i].difficulty,
-         trails[i].imgSmallMed,
+         trails[i].imgMedium,
          trails[i].name,
          trails[i].location
       );
       trailArray.push(newTrail);
    }
-   console.log(trailArray);
    makeTrailDivs(trailArray);
 }
 
@@ -173,11 +186,9 @@ let getNearbyTrails = (latitude, longitude) => {
    latString = latitude.toString();
    lonString = longitude.toString();
    hikingAPIURL = 'https://cors-anywhere.herokuapp.com/https://hikingproject.com/data/get-trails?lat='+latString+'&lon='+lonString+'&maxDistance=15&key=200963130-d1165a7ae0baf0bddd35de87f1df233e'
-   console.log(hikingAPIURL)
    fetch(hikingAPIURL, {method:'GET', headers:{'Access-Control-Allow-Origin': '*'}})
    .then(response => response.json())
    .then((data) => {buildTrails(data.trails)})
 }
-
 // start the autocomplete functionality when the page loads
 google.maps.event.addDomListener(window, 'load', autoComplete);
