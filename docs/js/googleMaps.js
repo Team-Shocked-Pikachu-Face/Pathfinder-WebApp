@@ -1,8 +1,9 @@
+// Google Maps URLs documentation: https://developers.google.com/maps/documentation/urls/get-started
+// Additional ideas: input validation/sanitation, default values in the buttons
 let getDirections = () => {
+	// get the elements of the textfields
 	fromLocation = document.getElementById("from").value;
 	toLocation = document.getElementById("to").value;
-
-	// Additional ideas: input validation/sanitation, default values in the buttons
 
 	// set the saddr and daddr name attributes for the inputs
 	let fromInput = document.getElementById("from");
