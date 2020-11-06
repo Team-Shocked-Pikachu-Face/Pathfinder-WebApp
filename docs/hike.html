@@ -32,19 +32,20 @@
           </div>
       </div>
    </header>
-   <br>
-   <br>
-   <br>
-   <h2>Hikes Near You</h2>
-   <button class="ui inverted green button" onclick="location.href='calculator.html';">Calculate Fitness</button>
-   <br>
-   <br>
-   <br>
-   <input id="Hike_Search_Bar" type="text" placeholder="Enter a City, State or Zip code...">
-   <button id="Search_Button" type="submit" onclick="geolocate()">SEARCH</button>
-   <br>
-   <br>
-   <br>
+   <div class= "ui centered grid" style="width: 50; margin: 0 auto;">
+      <div class="one column row">
+         <h2>Search For Hikes</h2>
+      </div>
+      <div class="two column row">
+         <div class = "ui search">
+            <input id="Hike_Search_Bar" class="prompt" type="text" placeholder="Enter a City, State or Zip code...">
+         </div>
+         <button id="Search_Button" class= "ui inverted green button" type="submit" onclick="geolocate()">SEARCH</button>
+      </div>
+      <div class="one column row">
+         <h2>Hikes Near You:</h2>
+      </div>
+   </div>
    <form id="toGoogleMaps" action="http://maps.google.com/maps" method="get">
       <label>From:</label>
       <input id="from" type="text">
@@ -54,6 +55,18 @@
    <button type="button" onclick="getDirections()" style="margin-top:20px;">Get Directions
       <i class="arrow alternate circle right icon"></i>
    </button>
+   <!-- This is a test div used for showing directions elements for a trail -->
+   <div id="directionsHolder" style="display: none;">
+      <form>
+         <label>From:</label>
+         <input type="text">
+         <label>To:</label>
+         <input type="text">
+      </form>
+      <button type="button" style="margin-top:20px;">Get Directions
+         <i class="arrow alternate circle right icon"></i>
+      </button>
+   </div>
    <div id="trails" class="ui one column centered grid" style="width:50%; margin: 0 auto;">
       <div id="trailLoader">
          <div class="ui text loader">Loading trails...</div>

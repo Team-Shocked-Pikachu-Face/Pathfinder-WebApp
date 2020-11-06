@@ -133,6 +133,12 @@ let makeTrailDivs = (trails) => {
      let trailLengthText = document.createTextNode("Length: "+trails[i].length+" miles");
      trailLength.appendChild(trailLengthText);
      newTrailDiv.appendChild(trailLength);
+     
+     //make From: To: div elements for each trail
+     let directionsNode = document.getElementById("directionsHolder");
+     let directionsNodeClone = directionsNode.cloneNode(true);
+     directionsNodeClone.style.display = "";
+     newTrailDiv.appendChild(directionsNodeClone);
 
      //append newly created trail div to the main trails div holder on hike.html
      parentDiv.appendChild(newTrailDiv);
@@ -156,6 +162,7 @@ class Trail {
 
 /*Builds trail objects from API call of getNearbyTrails() */
 let buildTrails = (trails) => {
+   console.log(trails);
    trailArray.length = 0;
    for (i in trails) {
       if (trails[i].difficulty === 'black') {
