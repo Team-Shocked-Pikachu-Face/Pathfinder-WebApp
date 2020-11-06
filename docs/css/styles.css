@@ -59,12 +59,13 @@
 
 .ui.inverted.masthead {
    margin-top: 5em;
-   height: 25em;
+   height: 38em;
    background-color: #2d8f33;
-   background-image: url('../images/sample.jpg') !important;
+   background-image: url('../images/sample3.jpg') !important;
    background-size: cover !important;
    background-position: center center; 
 }
-.ui.inverted.masthead .ui.container {
-   margin: 5em 0em 0em 0em;
-}
+
+/* .ui.inverted.masthead .ui.container {
+   margin: 0em 0em 0em 0em;
+} */
