@@ -46,24 +46,26 @@
          <h2>Hikes Near You:</h2>
       </div>
    </div>
-   <form id="toGoogleMaps" action="http://maps.google.com/maps" method="get">
+   <center><header><h3>Navigate to a Hike</h3></header></center>
+   <br>
+   <center><form id="toGoogleMaps" action="http://maps.google.com/maps" method="get">
       <label>From:</label>
       <input id="from" type="text">
       <label>To:</label>
       <input id="to" type="text">
-   </form>
-   <button type="button" onclick="getDirections()" style="margin-top:20px;">Get Directions in Google Maps
+   </form></center>
+   <center><button type="button" onclick="getDirections()" style="margin-top:20px;">Get Directions in Google Maps
       <i class="arrow alternate circle right icon"></i>
-   </button>
+   </button></center>
    <!-- This is a test div used for showing directions elements for a trail -->
    <div id="directionsHolder" style="display: none;">
-      <form>
+      <form action="http://maps.google.com/maps" method="get">
          <label>From:</label>
          <input type="text">
          <label>To:</label>
          <input type="text">
       </form>
-      <button type="button" style="margin-top:20px;">Get Directions in Google Maps
+      <button type="button" onclick="navigateToTrail(this)" style="margin-top:20px;">Get Directions in Google Maps
          <i class="arrow alternate circle right icon"></i>
       </button>
    </div>
