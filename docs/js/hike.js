@@ -91,7 +91,11 @@ function autoComplete()
 
 /*IN PROGRESS: create divs for each trail with trail info*/
 let makeTrailDivs = (trails) => {
-   parentDiv = document.getElementById("trails");
+   let parentDiv = document.getElementById("trails");
+   while (parentDiv.firstChild) {
+      parentDiv.firstChild.remove();
+   }
+
    for (i in trails) {
      //create a trail div to hold all trail information
      let newTrailDiv = document.createElement("div");
@@ -162,7 +166,7 @@ class Trail {
 
 /*Builds trail objects from API call of getNearbyTrails() */
 let buildTrails = (trails) => {
-   console.log(trails);
+   trailArray = [];
    trailArray.length = 0;
    for (i in trails) {
       if (trails[i].difficulty === 'black') {
