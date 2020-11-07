@@ -198,7 +198,7 @@ let getNearbyTrails = (latitude, longitude) => {
    lonString = longitude.toString();
    hikingAPIURL = 'https://cors-anywhere.herokuapp.com/https://hikingproject.com/data/get-trails?lat='+latString+'&lon='+lonString+'&maxDistance=15&key=200963130-d1165a7ae0baf0bddd35de87f1df233e'
    startLoading();
-   fetch(hikingAPIURL, {method:'GET', headers:{'Access-Control-Allow-Origin': '*'}})
+   fetch(hikingAPIURL)
       .then(response => response.json())
       .then((data) => {
          buildTrails(data.trails);
