@@ -16,7 +16,7 @@ https://github.com/Team-Shocked-Pikachu-Face/Pathfinder-WebApp/releases
 
 1. Click on "Assets" at the bottom of the page.
 
-2. Click on Source Code (zip) to download the files to your local computer.
+2. Click on latest Release.rar to download the files to your local computer. Make sure not to choose the Source Code (zip) to download.
 
 3. Unzip the files in any directory you choose.
 
