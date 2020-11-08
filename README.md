@@ -14,12 +14,12 @@ If for any reason the url above is not functioning, the latest release of pathfi
 
 https://github.com/Team-Shocked-Pikachu-Face/Pathfinder-WebApp/releases
 
-1. Click the download button under the latest release.
+1. Click on "Assets" at the bottom of the page.
 
-2. The file will download to your local computer. 
+2. Click on Source Code (zip) to download the files to your local computer.
 
-3. Unzip the files in any directory you choose. 
+3. Unzip the files in any directory you choose.
 
-4. Open the webapp by right clicking on Pathfinder-WebApp/docs/index.hmtl and selecting "Open" 
+4. Open the web app by navigating to docs/index.HTML, right-clicking and selecting "Open"
 
-5. Enjoy navigating the webapp!
+5. Enjoy navigating the web app!
