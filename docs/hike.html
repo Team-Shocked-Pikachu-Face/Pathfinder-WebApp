@@ -69,6 +69,48 @@
          <i class="arrow alternate circle right icon"></i>
       </button>
    </div>
+
+   <!-- Best choice feature -->
+   <div id="best_choice_feature" class="ui main text container">
+      <button class="ui inverted green button" onclick="showModal()">
+         Best Choice
+      </button>
+      <p hidden>
+         <small>
+            To enable this feature, 
+            <a href="./calculator.html">Calculate fitness level</a>
+         </small>
+      </p>
+   </div>
+   <!-- Modal for best choice(just for you) feature -->
+   <div class="ui mini modal">
+      <div class="actions" style="background-color: white;">
+         <i class="deny large close icon" style="cursor: pointer;"></i>
+      </div>
+      <div class="content">
+         <div class="ui form">
+            <div class="field">
+               <h3>Best Choice</h3>
+               <div class="ui toggle checkbox">
+                  <input type="checkbox" id="best_choice_switch">
+                  <label id="best_choice_switch_label"></label>
+               </div>
+            </div>
+            <div id="best_choice_options" class="field" hidden>
+               <h3>How do you want to feel?</h3>
+               <select class="ui dropdown">
+                  <option value="0">Easy & Chill</option>
+                  <option value="1">It's my level</option>
+                  <option value="2">Challenge me more!</option>
+               </select>
+            </div>
+         </div>
+      </div>
+      <div class="actions">
+         <div class="ui approve green button">Save</div>
+      </div>
+   </div>
+
    <div id="trails" class="ui one column centered grid" style="width:38%; margin: 0 auto;">
       
    </div>
@@ -84,6 +126,8 @@
    <script src="js/hike.js"></script>
    <script src="js/googleMaps.js"></script>
    <script src="js/userProfileButton.js"></script>
+   <script src="js/bestChoiceButton.js"></script>
+   <script src="js/bestChoiceModal.js"></script>
 
 </body>
 </html>
