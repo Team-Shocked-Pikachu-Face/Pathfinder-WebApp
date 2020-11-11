@@ -10,6 +10,7 @@ $('.ui.modal').modal({
     onApprove: function () {
         console.log('Save best choice settings');
         saveBestChoiceSettings();
+        filterTrails();
     }
 });
 

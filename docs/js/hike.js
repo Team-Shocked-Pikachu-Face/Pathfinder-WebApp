@@ -202,6 +202,7 @@ let getNearbyTrails = (latitude, longitude) => {
       .then(response => response.json())
       .then((data) => {
          buildTrails(data.trails);
+         filterTrails();
          endLoading();
       })
       .catch((err) => {
@@ -253,6 +254,79 @@ let endLoading = () => {
    const el = document.getElementById('trailLoader');
    el.className = '';
 };
+
+/**
+ * Calculate the best trail difficulty based on user's fitness level and mood.
+ * @return null|string - trail difficulty
+ */
+function calculateBestChoice() {
+   const fitnessLevel = JSON.parse(sessionStorage.getItem('fitnessLevel'));
+   const userMood = JSON.parse(sessionStorage.getItem('userMood'));
+   if (!fitnessLevel) {
+      console.error('Could not get fitness level');
+      return null;
+   }
+   if (!userMood) {
+      console.error('Could not get user mood');
+      return null;
+   }
+
+   switch (fitnessLevel) {
+      case FITNESS_LEVEL_LOW:
+         switch (userMood) {
+            case USER_MOOD_LOW:
+               return TRAIL_DIFFICULTY_EASY;
+            case USER_MOOD_MID:
+               return TRAIL_DIFFICULTY_EASY;
+            case USER_MOOD_HIGH:
+               return TRAIL_DIFFICULTY_MEDIUM;
+         }
+
+      case FITNESS_LEVEL_MID:
+         switch (userMood) {
+            case USER_MOOD_LOW:
+               return TRAIL_DIFFICULTY_EASY;
+            case USER_MOOD_MID:
+               return TRAIL_DIFFICULTY_MEDIUM;
+            case USER_MOOD_HIGH:
+               return TRAIL_DIFFICULTY_HARD;
+         }
+
+      case FITNESS_LEVEL_HIGH:
+         switch (userMood) {
+            case USER_MOOD_LOW:
+               return TRAIL_DIFFICULTY_MEDIUM;
+            case USER_MOOD_MID:
+               return TRAIL_DIFFICULTY_MEDIUM;
+            case USER_MOOD_HIGH:
+               return TRAIL_DIFFICULTY_HARD;
+         }
+   }
+}
+
+function filterTrails() {
+   if (!JSON.parse(sessionStorage.getItem('bestChoiceIsEnabled'))) {
+      unfilterTrails();
+      return;
+   }
+
+   const bestChoice = calculateBestChoice();
+   trailArray.forEach((trail, index) => {
+      const trailDiv = document.getElementById(`trail${index}`);
+      if (trail.difficulty === bestChoice) {
+         trailDiv.style.display = '';
+      } else {
+         trailDiv.style.display = 'none';
+      }
+   });
+}
+
+function unfilterTrails() {
+   trailArray.forEach((_, index) => {
+      const trailDiv = document.getElementById(`trail${index}`);
+      trailDiv.style.display = '';
+   });
+}
 
 // start the autocomplete functionality when the page loads
 google.maps.event.addDomListener(window, 'load', autoComplete);
