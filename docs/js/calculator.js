@@ -18,9 +18,10 @@ window.onload = () => {
     );
     populateSelectOptions("bday_day", 1, 31);
     populateSelectOptions("height_feet", 1, 7);
-    populateSelectOptions("height_inches", 0, 12);
+    populateSelectOptions("height_inches", 0, 11);
     populateSelectOptions("weight_pounds", 1, 300);
     fill_form();
+    initializeRadioTooltips();
 };
 
 // populates the options for select menus requiring integer selection
@@ -49,7 +50,7 @@ function populateSelectOptions(
     }
 }
 
-// if user data exists in browser, prepopulate form with previous values
+// if user data exists in browser, prepopulate form with previous values and display fitness
 function fill_form() {
     userData = getUserData();
     if (userData) {
@@ -140,6 +141,8 @@ function submitData() {
 function displayFitness(fitnessLevel) {
     const yourResult = document.getElementById("yourResultText");
     yourResult.hidden = false;
+    const profilePrompt = document.getElementById("profilePrompt");
+    profilePrompt.hidden = false;
     var fitnessDisplay = document.getElementById("fitness_result");
     if (typeof fitnessDisplay != "undefined" && fitnessDisplay != null) {
         fitnessDisplay.textContent = fitnessLevel;
@@ -149,7 +152,7 @@ function displayFitness(fitnessLevel) {
         fitnessDisplay.textContent = fitnessLevel;
 
         // add the newly created element and its content into the DOM
-        yourResult.insertBefore(fitnessDisplay, null);
+        yourResult.appendChild(fitnessDisplay);
     }
 
     // change color of result
@@ -213,4 +216,40 @@ function calculateFitness(bmi, age, activity_level) {
     }
 
     return fitness_level;
+}
+
+function initializeRadioTooltips() {
+    // initialize popup for question icon tooltips
+    $(".question.icon.tooltip").popup({
+        inline: false,
+    });
+
+    // initialize popups for radio buttons on calculator form
+    $(".radio.checkbox.sedentary").popup({
+        title: "Sedentary",
+        content:
+            "Occupation requires mostly sitting and little to no physical exertion. Less than 30 minutes of intentional exercise per day.",
+        position: "top center",
+    });
+
+    $(".radio.checkbox.lightly_active").popup({
+        title: "Lightly Active",
+        content:
+            "Daily exercise equivalent to 30 minutes of walking, or 15 minutes of vigorous activity such as jogging.",
+        position: "top center",
+    });
+
+    $(".radio.checkbox.moderately_active").popup({
+        title: "Moderately Active",
+        content:
+            "Daily exercise equivalent of 100 minutes of walking, or 50 minutes of vigorous activity such as jogging.",
+        position: "top center",
+    });
+
+    $(".radio.checkbox.highly_active").popup({
+        title: "Highly Active",
+        content:
+            "Occupation requires heavy physical activity for most of the day (e.g. carpenter), or 2 hours of vigorous activity such as jogging.",
+        position: "top center",
+    });
 }
