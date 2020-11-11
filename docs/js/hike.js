@@ -196,7 +196,8 @@ let buildTrails = (trails) => {
 let getNearbyTrails = (latitude, longitude) => {
    latString = latitude.toString();
    lonString = longitude.toString();
-   hikingAPIURL = 'https://cors-anywhere.herokuapp.com/https://hikingproject.com/data/get-trails?lat='+latString+'&lon='+lonString+'&maxDistance=15&key=200211115-d5a310327da9942ee690145b2d1ca5fc'
+   const PROXY_URL = 'https://pathfinder-osu-cs361.herokuapp.com/';
+   hikingAPIURL = PROXY_URL + 'https://hikingproject.com/data/get-trails?lat='+latString+'&lon='+lonString+'&maxDistance=15&key=200211115-d5a310327da9942ee690145b2d1ca5fc'
    startLoading();
    fetch(hikingAPIURL)
       .then(response => response.json())
