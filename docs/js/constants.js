@@ -1,0 +1,11 @@
+const FITNESS_LEVEL_LOW = "Low Fitness";
+const FITNESS_LEVEL_MID = "Medium Fitness";
+const FITNESS_LEVEL_HIGH = "High Fitness";
+
+const USER_MOOD_LOW = 1;
+const USER_MOOD_MID = 2;
+const USER_MOOD_HIGH = 3;
+
+const TRAIL_DIFFICULTY_EASY = "EASY";
+const TRAIL_DIFFICULTY_MEDIUM = "MEDIUM";
+const TRAIL_DIFFICULTY_HARD = "HARD";
