@@ -305,28 +305,39 @@ function calculateBestChoice() {
    }
 }
 
+/**
+ * Filter trails by the user's fitness level and mood
+ */
 function filterTrails() {
-   if (!JSON.parse(sessionStorage.getItem('bestChoiceIsEnabled'))) {
-      unfilterTrails();
-      return;
-   }
-
+   const bestChoiceIsEnabled = JSON.parse(sessionStorage.getItem('bestChoiceIsEnabled'));
    const bestChoice = calculateBestChoice();
+
+   let trailsFound = false;
    trailArray.forEach((trail, index) => {
       const trailDiv = document.getElementById(`trail${index}`);
-      if (trail.difficulty === bestChoice) {
+      const canDisplay = !bestChoiceIsEnabled || trail.difficulty === bestChoice;
+      if (canDisplay) {
          trailDiv.style.display = '';
+         trailsFound = true;
       } else {
          trailDiv.style.display = 'none';
       }
    });
+
+   if (!trailsFound) {
+      showNoTrailsFoundMessage();
+   } else {
+      hideNoTrailsFoundMessage();
+   }
 }
 
-function unfilterTrails() {
-   trailArray.forEach((_, index) => {
-      const trailDiv = document.getElementById(`trail${index}`);
-      trailDiv.style.display = '';
-   });
+function showNoTrailsFoundMessage() {
+   const el = document.getElementById('no_trails_found');
+   el.style.display = '';
+}
+function hideNoTrailsFoundMessage() {
+   const el = document.getElementById('no_trails_found');
+   el.style.display = 'none';
 }
 
 // start the autocomplete functionality when the page loads

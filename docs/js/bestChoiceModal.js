@@ -40,20 +40,11 @@ function configureModalContent() {
 
 function configureBestChoiceSwitch() {
     const bestChoiceSwitch = document.getElementById('best_choice_switch');
-
     if (bestChoiceIsEnabled()) {
         bestChoiceSwitch.checked = true;
     } else {
         bestChoiceSwitch.checked = false;
     }
-
-    bestChoiceSwitch.addEventListener('change', event => {
-        if (event.target.checked) {
-            showBestChoiceOptions();
-        } else {
-            hideBestChoiceOptions();
-        }
-    });
 }
 
 function configureBestChoiceOptions() {
@@ -85,6 +76,14 @@ function showBestChoiceOptions() {
 function hideBestChoiceOptions() {
     const bestChoiceOptions = document.getElementById('best_choice_options');
     bestChoiceOptions.hidden = true;
+}
+
+function toggleBestChoiceOptions(event) {
+    if (event.target.checked) {
+        showBestChoiceOptions();
+    } else {
+        hideBestChoiceOptions();
+    }
 }
 
 /** entry point of this js file */

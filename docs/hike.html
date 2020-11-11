@@ -92,8 +92,8 @@
             <div class="field">
                <h3>Best Choice</h3>
                <div class="ui toggle checkbox">
-                  <input type="checkbox" id="best_choice_switch">
-                  <label id="best_choice_switch_label"></label>
+                  <input type="checkbox" id="best_choice_switch" onchange="toggleBestChoiceOptions(event)">
+                  <label></label>
                </div>
             </div>
             <div id="best_choice_options" class="field" hidden>
@@ -114,9 +114,19 @@
    <div id="trails" class="ui one column centered grid" style="width:38%; margin: 0 auto;">
       
    </div>
+
+   <div id="no_trails_found" class="ui main text container" style="display: none;">
+      <div class="ui center aligned basic segment" style="background-color: #fffacd;">
+         <h3>No trails found</h3>
+         <p>Try different locations or best choice options.</p>
+      </div>
+   </div>
+
    <div id="trailLoader">
       <div class="ui text loader">Loading trails...</div>
    </div>
+
+
    <footer class="ui inverted vertical footer segment">
       <div class="ui center aligned container">
           © 2020 OSU CS361 Team Shocked Pikachu Face
