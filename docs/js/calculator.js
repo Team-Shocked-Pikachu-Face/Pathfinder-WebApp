@@ -85,11 +85,32 @@ function getUserData() {
 
 // Submits data of "user_form". Validates data and places into "userProfile", which is stored in sessionStorage
 function submitData() {
-    console.log("Attempting to submit data");
+    userProfile = createUserProfile();
 
+    // verify no empty fields
+    if(emptyFieldExists(userProfile) || !userProfile){
+        return;
+    }
+    
+    userProfile.age = calculateAge(userProfile);
+    userProfile.height_total_inches = calculateTotalInches(userProfile);
+    userProfile.bmi = calculateBMI(userProfile);
+    userProfile.fitness_level = calculateFitness(userProfile);
+
+    // display fitness level to page
+    displayFitness(userProfile.fitness_level);
+
+    // store data in browser
+    console.log("storing data to session storage");
+    sessionStorage.userProfile = JSON.stringify(userProfile);
+    sessionStorage.fitnessLevel = JSON.stringify(userProfile.fitness_level);
+}
+
+// create a userProfile object from html data field values
+function createUserProfile() {
     // create user_profile object from datafields
     try {
-        var userProfile = {
+        let userProfile = {
             bday_month: document.getElementById("bday_month").value,
             bday_day: document.getElementById("bday_day").value,
             bday_year: document.getElementById("bday_year").value,
@@ -100,41 +121,29 @@ function submitData() {
                 'input[name="activity_level"]:checked'
             ).value,
         };
+        return userProfile;
     } catch (error) {
         console.error("Radio button not selected");
-        return;
+        return null;
     }
+}
 
-    // check that the user selected values for dropdown lists
-    for (key in userProfile) {
-        if (userProfile[key] === "") {
-            console.error("Empty select list");
-            return;
-        }
-    }
+function calculateAge(userProfile) {
+    return currentYear - parseInt(userProfile.bday_year);
+}
 
-    // calculate user age and BMI
-    userProfile.age = currentYear - parseInt(userProfile.bday_year);
-    userProfile.height_total_inches =
+function calculateTotalInches(userProfile) {
+    return (
         12 * parseInt(userProfile.height_feet) +
-        parseInt(userProfile.height_inches);
-    userProfile.bmi = calculateBMI(
-        userProfile.weight_pounds,
-        userProfile.height_total_inches
+        parseInt(userProfile.height_inches)
     );
-    userProfile.fitness_level = calculateFitness(
-        userProfile.bmi,
-        userProfile.age,
-        userProfile.activity_level
+}
+
+// takes user weight(pounds) and height (inches), returns BMI:float
+function calculateBMI(userProfile) {
+    return (
+        (userProfile.weight_pounds / userProfile.height_total_inches ** 2) * 703
     );
-
-    console.log("user_profile:\n", userProfile);
-    displayFitness(userProfile.fitness_level);
-
-    // store data in browser
-    console.log("storing data to session storage");
-    sessionStorage.userProfile = JSON.stringify(userProfile);
-    sessionStorage.fitnessLevel = JSON.stringify(userProfile.fitness_level);
 }
 
 // Creates a div to display fitness level. If div already exists, updates fitness level within div.
@@ -165,18 +174,16 @@ function displayFitness(fitnessLevel) {
     }
 }
 
-// takes user weight(pounds) and height (inches), returns BMI:float
-function calculateBMI(weight, height) {
-    /**@return:  */
-    return (weight / height ** 2) * 703;
-}
-
 /**
  * Algorithm for estimating user fitness level.
  * BMI, age, and daily activity level values result in different point values.
  * Point values are used to classify user as "low", "medium", or "high" fitness
  */
-function calculateFitness(bmi, age, activity_level) {
+function calculateFitness(userProfile) {
+    let bmi = userProfile.bmi;
+    let age = userProfile.age;
+    let activity_level = userProfile.activity_level;
+
     var fitness_points = 0;
     if (activity_level == "Sedentary") {
         fitness_points = 1;
@@ -196,9 +203,13 @@ function calculateFitness(bmi, age, activity_level) {
         fitness_points -= 2;
     } else if (bmi > 25) {
         fitness_points -= 1;
+    } else if (bmi < 5) {
+        fitness_points -= 4;
     } else if (bmi < 10) {
-        fitness_points -= 2;
+        fitness_points -= 3;
     } else if (bmi < 15) {
+        fitness_points -= 2;
+    } else if (bmi < 18.5) {
         fitness_points -= 1;
     }
 
@@ -206,7 +217,7 @@ function calculateFitness(bmi, age, activity_level) {
         fitness_points -= 1;
     }
 
-    var fitness_level;
+    let fitness_level;
     if (fitness_points <= 1) {
         fitness_level = "Low Fitness";
     } else if (fitness_points == 2 || fitness_points == 3) {
@@ -216,6 +227,17 @@ function calculateFitness(bmi, age, activity_level) {
     }
 
     return fitness_level;
+}
+
+function emptyFieldExists(userProfile){
+        // check that the user selected values for dropdown lists
+    for (key in userProfile) {
+        if (userProfile[key] === "") {
+            console.error("Empty select list");
+            return true;
+        }
+    }
+    return null;
 }
 
 function initializeRadioTooltips() {
