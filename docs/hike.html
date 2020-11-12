@@ -48,28 +48,31 @@
    </div>
    <center><header><h3>Navigate to a Hike</h3></header></center>
    <br>
-   <center><form id="toGoogleMaps" action="https://maps.google.com/maps" method="get">
-      <label>From:</label>
-      <input id="from" type="text">
-      <label>To:</label>
-      <input id="to" type="text">
-   </form></center>
-   <center><button type="button" onclick="getDirections()" style="margin-top:20px;">Get Directions in Google Maps
-      <i class="arrow alternate circle right icon"></i>
-   </button></center>
-   <!-- This is a test div used for showing directions elements for a trail -->
-   <div id="directionsHolder" style="display: none;">
+   <center><div id="directionsHolderMain">
       <form action="https://maps.google.com/maps" method="get">
          <label>From:</label>
-         <input type="text">
+         <input id="from" type="text">
          <label>To:</label>
-         <input type="text">
+         <input id="to" type="text">
       </form>
       <button type="button" onclick="navigateToTrail(this)" style="margin-top:20px;">Get Directions in Google Maps
          <i class="arrow alternate circle right icon"></i>
       </button>
    </div>
 
+   </center>
+   <!-- This is a test div used for showing directions elements for a trail -->
+   <div id="directionsHolder" style="display: none;">
+      <form action="https://maps.google.com/maps" method="get">
+         <label>From:</label>
+         <input id="from" type="text">
+         <label>To:</label>
+         <input id="to" type="text">
+      </form>
+      <button type="button" onclick="navigateToTrail(this)" style="margin-top:20px;">Get Directions in Google Maps
+         <i class="arrow alternate circle right icon"></i>
+      </button>
+   </div>
    <!-- Best choice feature -->
    <div id="best_choice_feature" class="ui main text container">
       <button class="ui inverted green button" onclick="showModal()">
@@ -135,7 +138,6 @@
 
    <script src="js/constants.js"></script>
    <script src="js/hike.js"></script>
-   <script src="js/googleMaps.js"></script>
    <script src="js/userProfileButton.js"></script>
    <script src="js/bestChoiceButton.js"></script>
    <script src="js/bestChoiceModal.js"></script>
