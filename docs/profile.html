@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Libraries/Frameworks -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
     <!--CSS Stylesheet-->
-    <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
 
     <title>User Profile</title>
 </head>
@@ -47,20 +48,25 @@
                         <td class="user_attribute" id="weight"></td>
                     </tr>
                     <tr>
-                        <td>BMI</td>
+                        <td>BMI <i class="question circle icon link tooltip"
+                                data-content="Body mass index (BMI) is a measure of body fat based on height and weight that applies to adult men and women. A BMI value in the range of 18.5 to 24.9 is considered healthy."
+                                data-variation="wide"></i>
+                        </td>
                         <td class="user_attribute" id="bmi"></td>
                     </tr>
-                        <td>Activity Level</td>
-                        <td class="user_attribute" id="activity_level"></td>
+                    <td>Activity Level</td>
+                    <td class="user_attribute" id="activity_level"></td>
                     </tr>
                     </tr>
-                        <td>Fitness Level</td>
-                        <td class="user_attribute" id="fitness_level"></td>
+                    <td>Fitness Level <i class="question circle icon link tooltip" data-content="&quot;Fitness Level&quot; is our estimation of your body's ability to withstand the physical workload and is  based on factors of age, Body Mass Index (BMI), and daily physical activity.
+Calculating your Fitness Level allows us to recommend trails best fit for you!" data-variation="wide"></i></td>
+                    <td class="user_attribute" id="fitness_level"></td>
                     </tr>
                 </tbody>
             </table>
             <!-- Directs user to form page with previously filled data values -->
-            <button class="ui secondary button" onclick="window.location.href='calculator.html';">Update Information</button>
+            <button class="ui secondary button" onclick="window.location.href='calculator.html';">Update
+                Information</button>
         </div>
     </main>
 
@@ -68,10 +74,11 @@
         <div class="ui center aligned container">
             © 2020 OSU CS361 Team Shocked Pikachu Face
         </div>
-    </footer>  
+    </footer>
 
-    <script src="./js/profile.js"></script>
+    <script src="js/profile.js"></script>
     <script src="js/userProfileButton.js"></script>
+    <script src="js/tooltip.js"></script>
 </body>
 
 </html>

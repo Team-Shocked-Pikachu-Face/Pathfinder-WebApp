@@ -27,23 +27,32 @@ function displayUserSummary(userData){
     for(attribute in userData){
         console.log(`${attribute}: ${userData[attribute]}`)
     }
-    birthdate = document.getElementById("birthdate");
-    birthdate.textContent = `${userData["bday_month"]}/${userData["bday_day"]}/${userData["bday_year"]}`
-    birthdate = document.getElementById("height");
-    birthdate.textContent = `${userData["height_feet"]} '${userData["height_inches"]}" (${userData["height_total_inches"]} inches)`
+    let birthdate = document.getElementById("birthdate");
+    birthdate.textContent = `${userData["bday_month"]}/${userData["bday_day"]}/${userData["bday_year"]}`;
+    
+    let height = document.getElementById("height");
+    height.textContent = `${userData["height_feet"]} '${userData["height_inches"]}" (${userData["height_total_inches"]} inches)`;
 
-    birthdate = document.getElementById("weight");
-    birthdate.textContent = `${userData["weight_pounds"]} pounds`
+    let weight = document.getElementById("weight");
+    weight.textContent = `${userData["weight_pounds"]} pounds`;
 
-    birthdate = document.getElementById("bmi");
-    birthdate.textContent = `${parseFloat(userData["bmi"]).toFixed(2)} `
+    let bmi = document.getElementById("bmi");
+    bmi.textContent = `${parseFloat(userData["bmi"]).toFixed(1)} `;
 
-    birthdate = document.getElementById("activity_level");
-    birthdate.textContent = `${userData["activity_level"]} `
+    let activityLevel = document.getElementById("activity_level");
+    activityLevel.textContent = `${userData["activity_level"]} `;
 
-    birthdate = document.getElementById("fitness_level");
-    birthdate.textContent = `${userData["fitness_level"]} `
+    let fitnessLevel = document.getElementById("fitness_level");
+    fitnessLevel.textContent = `${userData["fitness_level"]} `;
 
+        // change color of result
+    if (userData["fitness_level"] == "Low Fitness") {
+        fitnessLevel.style.color = "red";
+    } else if (userData["fitness_level"]== "Medium Fitness") {
+        fitnessLevel.style.color = "orange";
+    } else if (userData["fitness_level"] == "High Fitness") {
+        fitnessLevel.style.color = "green";
+    }
 
 
 }
