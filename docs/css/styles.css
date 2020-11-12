@@ -81,3 +81,11 @@
 /* .ui.inverted.masthead .ui.container {
    margin: 0em 0em 0em 0em;
 } */
+
+/* styling specifically for recommend.html */
+#trailInfoHeader {
+   margin-top: 5em;
+}
+#trailInfoRow p{
+   margin-right: 4em;
+}
