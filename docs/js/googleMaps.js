@@ -16,5 +16,9 @@ let getDirections = () => {
 	toInput.value = toLocation;
 
 	// redirect using the submit form
-	document.getElementById("toGoogleMaps").submit();
+	if (this.id == "toGoogleMaps") {
+		document.getElementById("toGoogleMaps").submit();
+	} else {
+		document.getElementById("directionsHolder").submit();
+	}
 }
