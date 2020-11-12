@@ -105,6 +105,10 @@ let makeTrailDivs = (trails) => {
      let trailImage = document.createElement("img");
      //add the image source
      trailImage.src = trails[i].photo;
+     trailImage.onclick = function () {
+        sessionStorage.setItem('trail', JSON.stringify(trails[i]));
+        window.location.href = "recommend.html";
+     }
      //append img element to newTrailDiv
      newTrailDiv.appendChild(trailImage);
 
