@@ -57,6 +57,18 @@
    <center><button type="button" onclick="getDirections()" style="margin-top:20px;">Get Directions in Google Maps
       <i class="arrow alternate circle right icon"></i>
    </button></center>
+   <!-- This is a test div used for showing directions elements for a trail -->
+   <div id="directionsHolder" style="display: none;">
+      <form action="https://maps.google.com/maps" method="get">
+         <label>From:</label>
+         <input id="from" type="text">
+         <label>To:</label>
+         <input id="to" type="text">
+      </form>
+      <button type="button" onclick="getDirections()" style="margin-top:20px;">Get Directions in Google Maps
+         <i class="arrow alternate circle right icon"></i>
+      </button>
+   </div>
    <!-- Best choice feature -->
    <div id="best_choice_feature" class="ui main text container">
       <button class="ui inverted green button" onclick="showModal()">
