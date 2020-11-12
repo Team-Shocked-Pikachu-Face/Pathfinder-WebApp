@@ -146,6 +146,7 @@ let makeTrailDivs = (trails) => {
      let directionsNode = document.getElementById("directionsHolder");
      let directionsNodeClone = directionsNode.cloneNode(true);
      directionsNodeClone.style.display = "";
+     directionsNodeClone.childNodes[1].childNodes[7].value = trails[i].name;
      newTrailDiv.appendChild(directionsNodeClone);
 
      //append newly created trail div to the main trails div holder on hike.html
