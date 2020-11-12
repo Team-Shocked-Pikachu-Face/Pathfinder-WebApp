@@ -216,40 +216,6 @@ let getNearbyTrails = (latitude, longitude) => {
       })
 }
 
-// NavigateToTrail gets the input text the user entered in the From and To field on a particular trail and brings the user to google maps with the from and to boxes filled when they click the button. 
-function navigateToTrail(thisTrail)
-{
-   // Find the location of the form attached to this button
-   var form = thisTrail.parentNode.childNodes[1];
-   
-   // Set an id for the From input box on the trail
-   form.childNodes[3].id = "trailFrom"; 
-
-   // Set an id for the To input box on the trail
-   form.childNodes[7].id = "trailTo"; 
-   
-   // get the value entered in the From and To field
-   fromLocation = document.getElementById('trailFrom').value;
-   toLocation = document.getElementById('trailTo').value;
-
-   // set the saddr and daddr name attributes for the inputs
-   let fromInput = document.getElementById('trailFrom');
-   fromInput.setAttribute("name", "saddr");
-   // set the value that was retrieved from user input for from and to
-   fromInput.value = fromLocation;
-
-   let toInput = document.getElementById('trailTo');
-   toInput.setAttribute("name", "daddr");
-   toInput.value = toLocation;
-
-   // Set an id for the form to be submitted
-   form.id = "trailForm"; 
-   
-   // redirect using the submit form
-   document.getElementById("trailForm").submit();
-} 
-
-
 let startLoading = () => {
    const el = document.getElementById('trailLoader');
    el.className = 'ui active inverted dimmer';
