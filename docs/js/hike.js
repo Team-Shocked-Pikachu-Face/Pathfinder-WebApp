@@ -32,15 +32,7 @@ function geolocate()
       // If the address exists, get the latitude and longitude
       if(status == 'OK') 
       {
-         latitude = results[0].geometry.location.lat();
-         longitude = results[0].geometry.location.lng();
-         
-         // Print to the console for testing
-         console.log(latitude); 
-         console.log(longitude); 
-
-         //call getNearbyTrails() for hiking API
-         getNearbyTrails(latitude, longitude);
+         retrieveLatitudeLongitude(results);
       } 
       // Provide an error id the address does not exist
       else 
@@ -48,6 +40,18 @@ function geolocate()
          alert("Geocode was not successful for the following reason: " + status);
       } 
    });
+}
+
+function retrieveLatitudeLongitude(results) {
+  latitude = results[0].geometry.location.lat();
+  longitude = results[0].geometry.location.lng();
+         
+  // Print to the console for testing
+  console.log(latitude); 
+  console.log(longitude); 
+
+  //call getNearbyTrails() for hiking API
+  getNearbyTrails(latitude, longitude);
 }
 
 /*Summary: The autoComplete function instantiates when the page loads and autocompletes the address the user may be typing. It provides the user with options to autocomplete the entry */
