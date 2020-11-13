@@ -32,22 +32,23 @@ function populateSelectOptions(
     reverse = false
 ) {
     let select = document.getElementById(optionID);
-    // populate options in increasing order
     if (reverse) {
         for (let i = optionMax; i >= optionMin; i--) {
-            let option = document.createElement("option");
-            option.text = i;
-            option.value = i;
-            select.options.add(option);
+            iterateAddOption(select, i);
         }
     } else {
         for (let i = optionMin; i <= optionMax; i++) {
-            let option = document.createElement("option");
-            option.text = i;
-            option.value = i;
-            select.options.add(option);
+            iterateAddOption(select, i);
         }
     }
+}
+
+// adds option element to select HTMLElement given iterator
+function iterateAddOption(selectElement, iterCount) {
+    let option = document.createElement("option");
+    option.text = iterCount;
+    option.value = iterCount;
+    selectElement.options.add(option);
 }
 
 // if user data exists in browser, prepopulate form with previous values and display fitness
