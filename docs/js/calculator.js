@@ -31,18 +31,18 @@ function populateSelectOptions(
     optionMax,
     reverse = false
 ) {
-    var select = document.getElementById(optionID);
+    let select = document.getElementById(optionID);
     // populate options in increasing order
     if (reverse) {
-        for (var i = optionMax; i >= optionMin; i--) {
-            var option = document.createElement("option");
+        for (let i = optionMax; i >= optionMin; i--) {
+            let option = document.createElement("option");
             option.text = i;
             option.value = i;
             select.options.add(option);
         }
     } else {
-        for (var i = optionMin; i <= optionMax; i++) {
-            var option = document.createElement("option");
+        for (let i = optionMin; i <= optionMax; i++) {
+            let option = document.createElement("option");
             option.text = i;
             option.value = i;
             select.options.add(option);
@@ -88,10 +88,10 @@ function submitData() {
     userProfile = createUserProfile();
 
     // verify no empty fields
-    if(emptyFieldExists(userProfile) || !userProfile){
+    if (emptyFieldExists(userProfile) || !userProfile) {
         return;
     }
-    
+
     userProfile.age = calculateAge(userProfile);
     userProfile.height_total_inches = calculateTotalInches(userProfile);
     userProfile.bmi = calculateBMI(userProfile);
@@ -146,30 +146,42 @@ function calculateBMI(userProfile) {
     );
 }
 
-// Creates a div to display fitness level. If div already exists, updates fitness level within div.
+// Reveals HTML elements for results, add and colorize Fitness Level Result text
 function displayFitness(fitnessLevel) {
-    const yourResult = document.getElementById("yourResultText");
-    yourResult.hidden = false;
-    const profilePrompt = document.getElementById("profilePrompt");
-    profilePrompt.hidden = false;
-    var fitnessDisplay = document.getElementById("fitness_result");
+    // reveal hidden html elements displaying result
+    document.getElementById("yourResultText").hidden = false;
+    document.getElementById("profilePrompt").hidden = false;
+
+    displayFitnessLevelText(fitnessLevel);
+}
+
+// update or add text of user Fitness Level
+function displayFitnessLevelText(fitnessLevel) {
+    let yourResult = document.getElementById("yourResultText");
+    let fitnessDisplay = document.getElementById("fitness_result");
+
+    // fitnessLevel element already exists. Update fitness level text
     if (typeof fitnessDisplay != "undefined" && fitnessDisplay != null) {
         fitnessDisplay.textContent = fitnessLevel;
     } else {
+        // create a span and add fitness level Text
         fitnessDisplay = document.createElement("span");
         fitnessDisplay.setAttribute("id", "fitness_result");
         fitnessDisplay.textContent = fitnessLevel;
 
-        // add the newly created element and its content into the DOM
+        // append newly created span
         yourResult.appendChild(fitnessDisplay);
     }
+    colorizeFitnessLevelText(fitnessLevel, fitnessDisplay);
+}
 
+function colorizeFitnessLevelText(fitnessLevel, fitnessDisplay) {
     // change color of result
-    if (fitnessLevel == "Low Fitness") {
+    if (fitnessLevel == FITNESS_LEVEL_LOW) {
         fitnessDisplay.style.color = "red";
-    } else if (fitnessLevel == "Medium Fitness") {
+    } else if (fitnessLevel == FITNESS_LEVEL_MID) {
         fitnessDisplay.style.color = "orange";
-    } else if (fitnessLevel == "High Fitness") {
+    } else if (fitnessLevel == FITNESS_LEVEL_HIGH) {
         fitnessDisplay.style.color = "green";
     }
 }
@@ -184,7 +196,7 @@ function calculateFitness(userProfile) {
     let age = userProfile.age;
     let activity_level = userProfile.activity_level;
 
-    var fitness_points = 0;
+    let fitness_points = 0;
     if (activity_level == "Sedentary") {
         fitness_points = 1;
     } else if (activity_level == "Lightly Active") {
@@ -229,8 +241,8 @@ function calculateFitness(userProfile) {
     return fitness_level;
 }
 
-function emptyFieldExists(userProfile){
-        // check that the user selected values for dropdown lists
+function emptyFieldExists(userProfile) {
+    // check that the user selected values for dropdown lists
     for (key in userProfile) {
         if (userProfile[key] === "") {
             console.error("Empty select list");
