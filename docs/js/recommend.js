@@ -14,9 +14,8 @@ var storedTrail = {
     photo: "https://cdn2.apstatic.com/photos/hike/7000772_medium_1554159640.jpg"
 }
 
-
 class Trail {
-    constructor(passedTrail) {
+    constructor(passedTrail, recommendation) {
     this.length = passedTrail.length;
     this.latitude = passedTrail.latitude;
     this.longitude = passedTrail.longitude;
@@ -26,29 +25,54 @@ class Trail {
     this.photo = passedTrail.photo;
     this.name = passedTrail.name;
     this.location = passedTrail.location;
+    this.recommendation = recommendation;
     }
-    async getWeather () {
+    getWeather () {
        const weatherAPIURL = `https://api.openweathermap.org/data/2.5/weather?lat=${this.latitude}&lon=${this.longitude}&appid=e61074558f08136b4d111a532200ab94&units=imperial`
-       return fetch(weatherAPIURL)
+       fetch(weatherAPIURL)
             .then(response => response.json())
             .then((data) => {
                 this.weather = data
+                console.log(this.weather);
+                this.getRecommendations();
             })
             .catch((err) => {
                 console.log(err)
             })
     }
     getRecommendations() {
-        console.log("getting Recommendation");
+        const weatherCode = this.weather.weather[0]['id'];
+        if(weatherCode >= 200 && weatherCode <= 299) {
+            weatherCode = 200;
+        } else if (weatherCode >= 300 && weatherCode <= 399) {
+            weatherCode = 300;
+        } else if (weatherCode >= 500 && weatherCode <= 599) {
+            weatherCode = 500;
+        } else if (weatherCode >= 600 && weatherCode <= 699) {
+            weatherCode = 600;
+        } else if (weatherCode >= 700 && weatherCode <= 799) {
+            weatherCode = 700;
+        } else if (weatherCode === 801) {
+            weatherCode = 800;
+        } else if (weatherCode >= 802 && weatherCode <= 804) {
+            weatherCode = 802;
+        }
+        const temp = this.weather.main['temp'];
+        this.recommendation.buildRecommendation(
+            this.highestElevation, this.elevationGain,
+            this.length, temp, weatherCode
+        )
+        console.log(this.recommendation.getRecommendations());
     }
 }
 
-var focusedTrail = new Trail(storedTrail)
-var promises = [];
-promises.push(focusedTrail.getWeather());
-Promise.all(promises).then(() => {
-    console.log(promises);
-    console.log(focusedTrail.weather);
-    focusedTrail.getRecommendations();
-});
+var focusedTrail = new Trail(storedTrail, trailRecommendation);
+focusedTrail.getWeather();
+// var promises = [];
+// promises.push(focusedTrail.getWeather());
+// Promise.all(promises).then(() => {
+//     console.log(promises);
+//     console.log(focusedTrail.weather);
+//     focusedTrail.getRecommendations();
+// });
 
