@@ -131,14 +131,26 @@ let makeTrailDivs = (trails) => {
      
      //create trail latitude/longitude paragraph element
      let trailLatLon = document.createElement("p");
+     // Add a pin image to each trail next to the lat and lon
+     let pinImage = document.createElement("img"); 
+     pinImage.src="http://clipart-library.com/image_gallery/n622173.jpg"; 
+     pinImage.style.width = '6%'; 
+     pinImage.style.height = 'auto'; 
      let trailLatLonText = document.createTextNode("Lat: "+trails[i].latitude+"     Lon: "+trails[i].longitude);
+     trailLatLon.appendChild(pinImage); //Add pin image next to location
      trailLatLon.appendChild(trailLatLonText);
      newTrailDiv.appendChild(trailLatLon);
 
      //create trail difficulty element
      let trailDiff = document.createElement("p");
      let trailDiffText = document.createTextNode(trails[i].difficulty);
+     let difficultyButton = document.createElement("BUTTON"); 
+     difficultyButton.setAttribute("class", "difficultyButton");
+     difficultyButton.setAttribute("onclick", "showDifficultyGuide()");
+     let buttonText = document.createTextNode("?"); 
+     difficultyButton.appendChild(buttonText); 
      trailDiff.appendChild(trailDiffText);
+     trailDiff.appendChild(difficultyButton); 
      newTrailDiv.appendChild(trailDiff);
      
      // Colorize and bolden the text for each trail given its difficulty
@@ -227,6 +239,20 @@ let modifyTrailDifficultyColor = (difficulty, trailDiff) =>
       trailDiff.style.color = 'red';
       trailDiff.style.fontWeight = "900"
    }
+}
+
+
+/* this function displays the popup difficulty guide when the user
+clicks a button to learn more. */
+function showDifficultyGuide()
+{
+   $('.difficultyGuide').show();
+}
+
+/* Hides the difficulty guide*/
+function hideDifficultyGuide ()
+{
+   $('.difficultyGuide').hide();
 }
 
 

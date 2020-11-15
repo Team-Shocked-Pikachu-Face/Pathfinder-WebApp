@@ -9,6 +9,8 @@
 
    <!-- Google Api and library -->
    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBVA_6ZYEDiC92bx0SfR1Fti82gxLJxsKc"></script>
+   <!-- AJAX script -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -128,7 +130,24 @@
    <div id="trailLoader">
       <div class="ui text loader">Loading trails...</div>
    </div>
-
+   
+   <!-- Form for the difficulty guide popup -->
+   <div class="difficultyGuide hideGuide">
+      <button id="closeButton" style="float: right;" onclick="hideDifficultyGuide()">X</button>
+      <form>
+         <div><center><strong>Difficulty Guide</strong></center></div>
+         <div id="easy">EASY</div>
+            <div class="diffDescription">Trail is mostly even terrain with</div>
+            <div class="diffDescription">little to no elevation change.</div>
+         <div id="medium">MEDIUM</div>
+            <div class="diffDescription">Trail may have some uneven surfaces</div>
+            <div class="diffDescription">and may include some elevation changes.</div>
+         <div id="hard">HARD</div>
+            <div class="diffDescription">Trail likely has uneven surfaces and</div>
+            <div class="diffDescription">may include scrambles (using hands)</div>
+            <div class="diffDescription">and moderate elevation change.</div>
+      </form>
+   </div>
 
    <footer class="ui inverted vertical footer segment">
       <div class="ui center aligned container">

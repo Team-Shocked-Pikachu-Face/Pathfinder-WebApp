@@ -104,3 +104,47 @@
    background-position:top left;
    background-size: 40px;
 }
+/* Creates a round ? button and spaces it apart from the 
+trail difficulty*/
+.difficultyButton {
+   height: 20px; 
+   width: 20px; 
+   border-radius: 50%;
+   padding-left: 4px; 
+   display: inline-block;
+   margin-left: 20px; 
+}
+
+/* style the pop up box for the difficulty guide*/
+.difficultyGuide {
+   margin: auto;
+   width: 30%;
+   padding: 10px;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   background-color:white;
+   position:fixed; 
+   top: calc(50% - 90px);
+   left: calc(50% - 215px); 
+}
+.hideGuide {
+   display: none;
+}
+/* Difficulty guide text*/
+#easy {
+   font-weight: 900;
+   text-align: left;
+   color: rgb(98, 245, 98)
+}
+#medium {
+   font-weight: 900;
+   text-align: left;
+   color: rgb(250, 169, 47)
+}
+#hard {
+   font-weight: 900;
+   text-align: left;
+   color: rgb(233, 59, 29)
+}
+.diffDescription {
+   text-align: center; 
+}
