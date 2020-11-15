@@ -93,6 +93,7 @@ function autoCompleteLocationSearchBar()
    });
 }
 
+
 /*IN PROGRESS: create divs for each trail with trail info*/
 let makeTrailDivs = (trails) => {
    let parentDiv = document.getElementById("trails");
@@ -140,6 +141,9 @@ let makeTrailDivs = (trails) => {
      trailDiff.appendChild(trailDiffText);
      newTrailDiv.appendChild(trailDiff);
      
+     // Colorize and bolden the text for each trail given its difficulty
+     modifyTrailDifficultyColor(trails[i].difficulty, trailDiff); 
+
      //create trail length paragraph element
      let trailLength = document.createElement("p");
      let trailLengthText = document.createTextNode("Length: "+trails[i].length+" miles");
@@ -173,15 +177,16 @@ class Trail {
    }
 }
 
+
 /*Builds trail objects from API call of getNearbyTrails() */
 let buildTrails = (trails) => {
    trailArray = [];
    trailArray.length = 0;
    for (i in trails) {
-      if (trails[i].difficulty === 'black') {
+      if (trails[i].difficulty === 'black' || trails[i].difficulty === 'blueBlack') {
          trails[i].difficulty = 'HARD';
       } else if (trails[i].difficulty === 'blue') {
-         trails[i].difficulty = 'MEDIUM';
+         trails[i].difficulty = 'MEDIUM'; 
       } else if (trails[i].difficulty === 'green') {
          trails[i].difficulty = 'EASY';
       }
@@ -200,6 +205,30 @@ let buildTrails = (trails) => {
    }
    makeTrailDivs(trailArray);
 }
+
+
+/*this function colors the text for each trail's difficulty based on 
+its difficulty level and makes it bold.*/
+let modifyTrailDifficultyColor = (difficulty, trailDiff) =>
+{
+   // Bolden each trail and color it accordingly. 
+   if(difficulty === 'EASY')
+   {   
+      trailDiff.style.color = 'green';
+      trailDiff.style.fontWeight = "900"
+   }
+   else if(difficulty === 'MEDIUM')
+   {  
+      trailDiff.style.color = 'orange';
+      trailDiff.style.fontWeight = "900"
+   }
+   else if(difficulty === 'HARD')
+   {  
+      trailDiff.style.color = 'red';
+      trailDiff.style.fontWeight = "900"
+   }
+}
+
 
 // NavigateToTrail gets the input text the user entered in the From and To field on a particular trail and brings the user to google maps with the from and to boxes filled when they click the button. 
 function navigateToTrail(thisTrail)

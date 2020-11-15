@@ -89,3 +89,18 @@
 #trailInfoRow p{
    margin-right: 4em;
 }
+/*Space the search button a little further away from the search bar*/
+#Search_Button {
+   margin-left: 10px;
+   height: 40px; 
+}
+/* Add a magnifying glass to the search bar and size the image and bar*/
+#Hike_Search_Bar {
+   height: 40px;
+   font-size: 20px;
+   padding-left: 45px; 
+   background-image:url('https://i.pinimg.com/originals/95/ee/40/95ee408c19f2c9d10629b70c4cea3e51.jpg');
+   background-repeat:no-repeat;
+   background-position:top left;
+   background-size: 40px;
+}
