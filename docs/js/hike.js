@@ -301,12 +301,18 @@ let getNearbyTrails = (latitude, longitude) => {
       .then((data) => {
          buildTrails(data.trails);
          filterTrails();
+         showBestChoiceButton();
          endLoading();
       })
       .catch((err) => {
          console.log(err);
          endLoading();
       })
+}
+
+function showBestChoiceButton() {
+   const el = document.getElementById('best_choice_feature');
+   el.style.display = '';
 }
 
 let startLoading = () => {
