@@ -98,15 +98,29 @@ class Clothing extends RecommendedItem{
 Weather codes for the below object creations can be found at: https://openweathermap.org/weather-conditions
 */
 
-/* Winter Clothing Objects*/
+/* Warm Clothing Objects*/
 //head wear
-
+const warmHead1 = new Clothing('../clothes/warmHead1.jpg', '', [60, 120], 'head', [800]);
+gearClothesHolder.storeClothes(warmHead1);
+const warmHead2 = new Clothing('../clothes/warmHead2.jpg', 'drizzle', [60, 120], 'head', [300]);
+gearClothesHolder.storeClothes(warmHead2);
 //jackets
-
+const warmJacket1 = new Clothing('../clothes/warmJacket1.jpg', '', [60,70], 'jacket', [200, 300, 400, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(warmJacket1);
+const warmJacket2 = new Clothing('../clothes/warmJacket1.jpg', '', [60,70], 'jacket', [200, 300, 400, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(warmJacket2);
 //shirts
-
-//pants
-
+const warmShirt1 = new Clothing('../clothes/warmShirt1.jpg', '', [70,120], 'jacket', [200, 300, 400, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(warmShirt1);
+const warmShirt2 = new Clothing('../clothes/warmShirt2.jpg', '', [70,120], 'jacket', [200, 300, 400, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(warmShirt2);
+//pants/shorts
+const warmPants1 = new Clothing('../clothes/warmPants1.jpg', '', [65, 120], 'pant', [200, 300, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(warmPants1);
+const warmPants2 = new Clothing('../clothes/warmPants2.jpg', '', [65, 120], 'pant', [200, 300, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(warmPants2);
+const warmShorts1 = new Clothing('../clothes/warmShorts1.jpg', 'cargo shorts', [65, 120], 'pant', [200, 300, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(warmShorts1);
 
 /* Cold Clothing Objects*/
 //head wear
@@ -122,40 +136,41 @@ gearClothesHolder.storeClothes(coldJacket2);
 const coldJacket3 = new Clothing('../clothes/coldJacket3.jpg', '', [45,60], 'jacket', [200, 300, 400, 500, 600, 700, 800]);
 gearClothesHolder.storeClothes(coldJacket3);
 //shirts
-const longSleeve1 = new Clothing('../clothes/longSleeve1.jpg', '', [45,60], 'shirt', [200, 300, 500, 600, 700, 800]);
+const longSleeve1 = new Clothing('../clothes/longSleeve1.jpg', '', [-20,70], 'shirt', [200, 300, 500, 600, 700, 800]);
 gearClothesHolder.storeClothes(longSleeve1);
-const longSleeve2 = new Clothing('../clothes/longSleeve2.jpg', '', [45,60], 'shirt', [200, 300, 500, 600, 700, 800]);
+const longSleeve2 = new Clothing('../clothes/longSleeve2.jpg', '', [-20,70], 'shirt', [200, 300, 500, 600, 700, 800]);
 gearClothesHolder.storeClothes(longSleeve2);
 //pants
-const coldPants1 = new Clothing('../clothes/coldPants1.jpg', '', [45,60], 'pant', [200, 300, 500, 600, 700, 800]);
-gearClothesHolder.storeClothes(coldPants1);
-const coldPants2 = new Clothing('../clothes/coldPants2.jpg', '', [45,60], 'pant', [200, 300, 500, 600, 700, 800]);
+const coldPants2 = new Clothing('../clothes/coldPants2.jpg', 'windproof and waterproof', [45,65], 'pant', [200, 300, 500, 600, 700, 800]);
 gearClothesHolder.storeClothes(coldPants2);
-const coldPants3 = new Clothing('../clothes/coldPants3.jpg', '', [45,60], 'pant', [200, 300, 500, 600, 700, 800]);
-gearClothesHolder.storeClothes(coldPants3);
-/* Warm Clothing Objects*/
+
+/* Winter Clothing Objects*/
 //head wear
 
 //jackets
-
-//shirts
-
+const winterJacket1 = new Clothing('../clothes/winterJacket1.jpg', '', [-20,44.99999], 'jacket', [200, 300, 400, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(winterJacket1);
+const winterJacket2 = new Clothing('../clothes/winterJacket2.jpg', '', [-20,44.99999], 'jacket', [200, 300, 400, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(winterJacket2);
 //pants
+const winterPants1 = new Clothing('../clothes/winterPants1.jpg', 'insulated and wind/waterproof', [-20,44.99999], 'pant', [200, 300, 400, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(winterPants1);
 
 /* Footwear */
 //regular hiking boots/shoes
-const hikingBoot1 = new Clothing('../clothes/hikingBoot1.jpg', '', [45,130], 'footwear', [200, 300, 700, 800]);
+const hikingBoot1 = new Clothing('../clothes/hikingBoot1.jpg', '', [45,130], 'footwear', [200, 300, 400, 500, 600, 700, 800]);
 gearClothesHolder.storeClothes(hikingBoot1);
-const hikingBoot2 = new Clothing('../clothes/hikingBoot2.jpg', '', [45,130], 'footwear');
-gearClothesHolder.storeClothes(hikingBoot1);
-//Snow boots
-const hikingBootSnow1 = new Clothing('../clothes/hikingBootSnow1.jpg', '', [-20, 65], 'footwear', [500, 600]);
-gearClothesHolder.storeClothes(hikingBootSnow1);
-
+const hikingBoot2 = new Clothing('../clothes/hikingBoot2.jpg', '', [45,130], 'footwear', [200, 300, 400, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(hikingBoot2);
+//winter boots
+const hikingBootCold1 = new Clothing('../clothes/hikingBootCold1.jpg', '', [-20, 44.99999], 'footwear', [200, 300, 400, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(hikingBootCold1);
+const hikingBootCold2 = new Clothing('../clothes/hikingBootCold1.jpg', '', [-20, 44.99999], 'footwear', [200, 300, 400, 500, 600, 700, 800]);
+gearClothesHolder.storeClothes(hikingBootCold2);
 
 /* Gear Objects */
 //hiking poles
-const hikingPoles = new Gear('../gear/hikingPoles.png', '', [-20,130], 700, [0,200], [200, 300, 500, 600, 700, 800]);
+const hikingPoles = new Gear('../gear/hikingPoles.jpg', '', [-20,130], 700, [0,200], [200, 300, 500, 600, 700, 800]);
 gearClothesHolder.storeGear(hikingPoles);
 //water bottle
 const waterBottle = new Gear('../gear/waterBottle.jpg', '', [-20,130], 0, [0, 5.999], [200, 300, 500, 600, 700, 800]);
@@ -164,8 +179,11 @@ gearClothesHolder.storeGear(waterBottle);
 const hydrationBag = new Gear('../gear/hydrationBag.jpg', '', [-20,130], 0, [6,200], [200, 300, 500, 600, 700, 800]);
 gearClothesHolder.storeGear(hydrationBag);
 //sunglasses
-const sunglasses = new Gear('../gear/sunglasses.jpg', '', [-20,130], 700, [0,200], [800]);
+const sunglasses = new Gear('../gear/sunglasses.jpg', '', [-20,130], 0, [0,200], [800]);
 gearClothesHolder.storeGear(sunglasses);
+//poncho
+const poncho = new Gear('../gear/poncho.jpg', '', [60,130], 0, [0,200], [200, 500]);
+gearClothesHolder.storeGear(poncho);
 
 console.log(gearClothesHolder.getClothes());
 console.log(gearClothesHolder.getGear());

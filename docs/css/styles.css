@@ -89,6 +89,17 @@
 #trailInfoRow p{
    margin-right: 4em;
 }
+.ui.styled.fluid.accordion {
+   margin: 0 auto;
+   width: 50em;
+}
+.ui.styled.accordion img{
+   text-align: center;
+   margin-right: 5%;
+   width: 25%;
+   height: 25%;
+}
+
 /*Space the search button a little further away from the search bar*/
 #Search_Button {
    margin-left: 10px;

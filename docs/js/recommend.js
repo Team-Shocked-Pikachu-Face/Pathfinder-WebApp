@@ -32,8 +32,20 @@ class Trail {
        fetch(weatherAPIURL)
             .then(response => response.json())
             .then((data) => {
-                this.weather = data
+                this.weather = data;
                 console.log(this.weather);
+                var date = new Date();
+                const trailH2 = document.getElementById("trailName");
+                trailH2.innerText = this.name + " - " + date.getMonth().toString() + "/" + date.getDate().toString() + " - Clothing & Gear Recommendations";
+                const weatherPBar = document.getElementById('trailWeather');
+                console.log(weatherPBar);
+                weatherPBar.innerText = this.weather.main['temp'].toString() + " Degrees, " + this.weather.weather[0]['description'];
+                const lengthPBar = document.getElementById('trailLength');
+                lengthPBar.innerText = "Distance: " + this.length.toString() + " miles";
+                const elevGainPBar = document.getElementById('trailElevationGain');
+                elevGainPBar.innerText = "ElevationGain: " + this.elevationGain.toString() + " feet";
+                const trailDifficultyPBar = document.getElementById('trailDifficulty');
+                trailDifficultyPBar.innerText = "Difficulty: " + this.difficulty.toString();
                 this.getRecommendations();
             })
             .catch((err) => {
@@ -62,6 +74,10 @@ class Trail {
             this.highestElevation, this.elevationGain,
             this.length, temp, weatherCode
         )
+        $('.ui.accordion')
+            .accordion({
+                exclusive: false
+            });
         console.log(this.recommendation.getRecommendations());
     }
 }
