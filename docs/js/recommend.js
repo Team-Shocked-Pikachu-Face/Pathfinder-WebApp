@@ -1,18 +1,18 @@
-// var trail = JSON.parse(sessionStorage.trail);
-// console.log(trail);
+var storedTrail = JSON.parse(sessionStorage.trail);
+console.log(storedTrail);
 
 // this is test trail info to use while making recommend page, normally have selected trail from hike.html being saved in sessionStorage(clicking on trail's image)
-var storedTrail = {
-    difficulty: "MEDIUM",
-    elevationGain: 2503,
-    highestElevation: 10656,
-    latitude: 40.3121,
-    length: 8.5,
-    location: "Estes Park, Colorado",
-    longitude: -105.6464,
-    name: "Bear Lake TH to Fern Lake TH",
-    photo: "https://cdn2.apstatic.com/photos/hike/7000772_medium_1554159640.jpg"
-}
+// var storedTrail = {
+//     difficulty: "MEDIUM",
+//     elevationGain: 2503,
+//     highestElevation: 10656,
+//     latitude: 40.3121,
+//     length: 8.5,
+//     location: "Estes Park, Colorado",
+//     longitude: -105.6464,
+//     name: "Bear Lake TH to Fern Lake TH",
+//     photo: "https://cdn2.apstatic.com/photos/hike/7000772_medium_1554159640.jpg"
+// }
 
 class Trail {
     constructor(passedTrail, recommendation) {
@@ -33,12 +33,10 @@ class Trail {
             .then(response => response.json())
             .then((data) => {
                 this.weather = data;
-                console.log(this.weather);
                 var date = new Date();
                 const trailH2 = document.getElementById("trailName");
                 trailH2.innerText = this.name + " - " + date.getMonth().toString() + "/" + date.getDate().toString() + " - Clothing & Gear Recommendations";
                 const weatherPBar = document.getElementById('trailWeather');
-                console.log(weatherPBar);
                 weatherPBar.innerText = this.weather.main['temp'].toString() + " Degrees, " + this.weather.weather[0]['description'];
                 const lengthPBar = document.getElementById('trailLength');
                 lengthPBar.innerText = "Distance: " + this.length.toString() + " miles";
@@ -53,7 +51,7 @@ class Trail {
             })
     }
     getRecommendations() {
-        const weatherCode = this.weather.weather[0]['id'];
+        let weatherCode = this.weather.weather[0]['id'];
         if(weatherCode >= 200 && weatherCode <= 299) {
             weatherCode = 200;
         } else if (weatherCode >= 300 && weatherCode <= 399) {
@@ -69,7 +67,7 @@ class Trail {
         } else if (weatherCode >= 802 && weatherCode <= 804) {
             weatherCode = 802;
         }
-        const temp = this.weather.main['temp'];
+        let temp = this.weather.main['temp'];
         this.recommendation.buildRecommendation(
             this.highestElevation, this.elevationGain,
             this.length, temp, weatherCode
@@ -78,17 +76,58 @@ class Trail {
             .accordion({
                 exclusive: false
             });
-        console.log(this.recommendation.getRecommendations());
+        let recommendations = this.recommendation.getRecommendations();
+        console.log(recommendations);
+        let head = recommendations['head'];
+        let headImages = document.getElementById('headImages');
+        for(let i in head) {
+            let image = document.createElement('img');
+            image.src = head[i].getImage();
+            headImages.appendChild(image);
+            $(image)
+                .popup({
+                    content : head[i].getDescription()
+                })
+            ;
+        }
+        let jacket = recommendations['jacket'];
+        let jacketImages = document.getElementById('jacketImages');
+        for(let i in jacket) {
+            let image = document.createElement('img');
+            image.src = jacket[i].getImage();
+            jacketImages.appendChild(image);
+        }
+        let shirt = recommendations['shirt'];
+        let shirtImages = document.getElementById('shirtImages');
+        for(let i in shirt) {
+            let image = document.createElement('img');
+            image.src = shirt[i].getImage();
+            shirtImages.appendChild(image);
+        }
+        let pant = recommendations['pant'];
+        let pantImages = document.getElementById('pantImages');
+        for(let i in pant) {
+            let image = document.createElement('img');
+            image.src = pant[i].getImage();
+            pantImages.appendChild(image);
+        }
+        let footwear = recommendations['footwear'];
+        let footwearImages = document.getElementById('footwearImages');
+        for(let i in footwear) {
+            let image = document.createElement('img');
+            image.src = footwear[i].getImage();
+            footwearImages.appendChild(image);
+        }
+        let gear = recommendations['gear'];
+        let gearImages = document.getElementById('miscImages');
+        for(let i in gear) {
+            let image = document.createElement('img');
+            image.src = gear[i].getImage();
+            gearImages.appendChild(image);
+        }
+
     }
 }
 
 var focusedTrail = new Trail(storedTrail, trailRecommendation);
 focusedTrail.getWeather();
-// var promises = [];
-// promises.push(focusedTrail.getWeather());
-// Promise.all(promises).then(() => {
-//     console.log(promises);
-//     console.log(focusedTrail.weather);
-//     focusedTrail.getRecommendations();
-// });
-

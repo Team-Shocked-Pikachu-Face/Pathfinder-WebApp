@@ -84,7 +84,13 @@
 
 /* styling specifically for recommend.html */
 #trailInfoHeader {
+   margin: 0 auto;
    margin-top: 5em;
+   margin-bottom: 1em;
+   width: 50%;
+   border: 0.2em solid #32b136;
+   border-radius: 1.5em;
+   padding: 0.1em;
 }
 #trailInfoRow p{
    margin-right: 4em;
@@ -93,11 +99,12 @@
    margin: 0 auto;
    width: 50em;
 }
-.ui.styled.accordion img{
+
+.ui.styled.fluid.accordion img {
    text-align: center;
    margin-right: 5%;
-   width: 25%;
-   height: 25%;
+   width: 13em;
+   height: 13em;
 }
 
 /*Space the search button a little further away from the search bar*/

@@ -100,6 +100,14 @@ let makeTrailDivs = (trails) => {
    while (parentDiv.firstChild) {
       parentDiv.firstChild.remove();
    }
+   let hikingAPIInfo = document.createElement("p");
+   let APIText = document.createTextNode("All trail photos and information from https://www.hikingproject.com");
+   hikingAPIInfo.appendChild(APIText);
+   parentDiv.appendChild(hikingAPIInfo);
+   hikingAPIInfo = document.createElement("p");
+   APIText = document.createTextNode("Click on a trail's image to go to the hikingproject page");
+   hikingAPIInfo.appendChild(APIText);
+   parentDiv.appendChild(hikingAPIInfo);
 
    for (i in trails) {
      //create a trail div to hold all trail information
@@ -110,10 +118,12 @@ let makeTrailDivs = (trails) => {
      let trailImage = document.createElement("img");
      //add the image source
      trailImage.src = trails[i].photo;
-     trailImage.onclick = function () {
-        sessionStorage.setItem('trail', JSON.stringify(trails[i]));
-        window.location.href = "recommend.html";
-     }
+     trailImage.onclick = function (trail) {
+        return function() {
+         sessionStorage.setItem('trail', JSON.stringify(trail));
+         window.location.href = "recommend.html";
+        }
+     }(trails[i]);
      //append img element to newTrailDiv
      newTrailDiv.appendChild(trailImage);
 
@@ -199,7 +209,7 @@ let buildTrails = (trails) => {
          trails[i].difficulty = 'HARD';
       } else if (trails[i].difficulty === 'blue') {
          trails[i].difficulty = 'MEDIUM'; 
-      } else if (trails[i].difficulty === 'green') {
+      } else if (trails[i].difficulty === 'green' || trails[i].difficulty === 'greenBlue') {
          trails[i].difficulty = 'EASY';
       }
       let newTrail = new Trail(
