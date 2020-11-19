@@ -94,12 +94,33 @@ function autoCompleteLocationSearchBar()
 }
 
 
-/*IN PROGRESS: create divs for each trail with trail info*/
 let makeTrailDivs = (trails) => {
    let parentDiv = document.getElementById("trails");
+   clearTrailDivs(parentDiv);
+   createTrailAPIInfoElements(parentDiv);
+
+   for (i in trails) {
+     //create a trail div to hold all trail information
+     let newTrailDiv = document.createElement("div");
+     newTrailDiv.className = "one column centered row"
+     newTrailDiv.id = "trail"+i.toString();
+     createTrailImage(trails[i], newTrailDiv);
+     createTrailNameLocationText(trails[i], newTrailDiv);
+     createTrailLatLonPin(trails[i], newTrailDiv);
+     createTrailDifficultyElements(trails[i], newTrailDiv);
+     createTrailLengthText(trails[i], newTrailDiv);
+     createDirectionsElement(trails[i], newTrailDiv);
+     parentDiv.appendChild(newTrailDiv);
+   }
+
+}
+
+function clearTrailDivs(parentDiv) {
    while (parentDiv.firstChild) {
       parentDiv.firstChild.remove();
    }
+}
+function createTrailAPIInfoElements(parentDiv) {
    let hikingAPIInfo = document.createElement("p");
    let APIText = document.createTextNode("All trail photos and information from https://www.hikingproject.com");
    hikingAPIInfo.appendChild(APIText);
@@ -108,100 +129,73 @@ let makeTrailDivs = (trails) => {
    APIText = document.createTextNode("Click on a trail's image to go to the hikingproject page");
    hikingAPIInfo.appendChild(APIText);
    parentDiv.appendChild(hikingAPIInfo);
+}
+function createTrailImage(trail, newTrailDiv) {
+   let trailImage = document.createElement("img");
+   trailImage.src = trail.imgMedium; //******** */
+   trailImage.onclick = function (trail) {
+      return function() {
+      sessionStorage.setItem('trail', JSON.stringify(trail));
+      window.location.href = "recommend.html";
+      }
+   }(trail);
 
-   for (i in trails) {
-     //create a trail div to hold all trail information
-     let newTrailDiv = document.createElement("div");
-     newTrailDiv.className = "one column centered row"
-     newTrailDiv.id = "trail"+i.toString();
-     //create img element for trail photo
-     let trailImage = document.createElement("img");
-     //add the image source
-     trailImage.src = trails[i].photo;
-     trailImage.onclick = function (trail) {
-        return function() {
-         sessionStorage.setItem('trail', JSON.stringify(trail));
-         window.location.href = "recommend.html";
-        }
-     }(trails[i]);
-     //append img element to newTrailDiv
-     newTrailDiv.appendChild(trailImage);
+   newTrailDiv.appendChild(trailImage);
+}
+function createTrailNameLocationText(trail, newTrailDiv) {
+   let trailName = document.createElement("h2");
+   let trailNameText = document.createTextNode(trail.name)
+   trailName.appendChild(trailNameText);
+   newTrailDiv.appendChild(trailName)
+   
+   //create trail location paragraph
+   let trailLocation = document.createElement("p");
+   let trailLocationText = document.createTextNode(trail.location);
+   trailLocation.appendChild(trailLocationText);
+   newTrailDiv.append(trailLocation);
+}
+function createTrailLatLonPin(trail, newTrailDiv) {
+   // Add a pin image to each trail next to the lat and lon
+   let pinImage = document.createElement("img"); 
+   pinImage.src="http://clipart-library.com/image_gallery/n622173.jpg"; 
+   pinImage.style.width = '6%'; 
+   pinImage.style.height = 'auto'; 
 
-     //create trail name header element
-     let trailName = document.createElement("h2");
-     let trailNameText = document.createTextNode(trails[i].name)
-     trailName.appendChild(trailNameText);
-     newTrailDiv.appendChild(trailName)
-     
-     //create trail location paragraph
-     let trailLocation = document.createElement("p");
-     let trailLocationText = document.createTextNode(trails[i].location);
-     trailLocation.appendChild(trailLocationText);
-     newTrailDiv.append(trailLocation);
-     
-     //create trail latitude/longitude paragraph element
-     let trailLatLon = document.createElement("p");
-     // Add a pin image to each trail next to the lat and lon
-     let pinImage = document.createElement("img"); 
-     pinImage.src="http://clipart-library.com/image_gallery/n622173.jpg"; 
-     pinImage.style.width = '6%'; 
-     pinImage.style.height = 'auto'; 
-     let trailLatLonText = document.createTextNode("Lat: "+trails[i].latitude+"     Lon: "+trails[i].longitude);
-     trailLatLon.appendChild(pinImage); //Add pin image next to location
-     trailLatLon.appendChild(trailLatLonText);
-     newTrailDiv.appendChild(trailLatLon);
-
-     //create trail difficulty element
-     let trailDiff = document.createElement("p");
-     let trailDiffText = document.createTextNode(trails[i].difficulty);
-     let difficultyButton = document.createElement("BUTTON"); 
-     difficultyButton.setAttribute("class", "difficultyButton");
-     difficultyButton.setAttribute("onclick", "showDifficultyGuide()");
-     let buttonText = document.createTextNode("?"); 
-     difficultyButton.appendChild(buttonText); 
-     trailDiff.appendChild(trailDiffText);
-     trailDiff.appendChild(difficultyButton); 
-     newTrailDiv.appendChild(trailDiff);
-     
-     // Colorize and bolden the text for each trail given its difficulty
-     modifyTrailDifficultyColor(trails[i].difficulty, trailDiff); 
-
-     //create trail length paragraph element
-     let trailLength = document.createElement("p");
-     let trailLengthText = document.createTextNode("Length: "+trails[i].length+" miles");
-     trailLength.appendChild(trailLengthText);
-     newTrailDiv.appendChild(trailLength);
-     
-     //make From: To: div elements for each trail
-     let directionsNode = document.getElementById("directionsHolder");
-     let directionsNodeClone = directionsNode.cloneNode(true);
-     directionsNodeClone.style.display = "";
-     directionsNodeClone.childNodes[1].childNodes[7].value = trails[i].name;
-     newTrailDiv.appendChild(directionsNodeClone);
-
-     //append newly created trail div to the main trails div holder on hike.html
-     parentDiv.appendChild(newTrailDiv);
-   }
-
+   let trailLatLon = document.createElement("p");
+   let trailLatLonText = document.createTextNode("Lat: "+trail.latitude+"     Lon: "+trail.longitude);
+   trailLatLon.appendChild(pinImage); //Add pin image next to location
+   trailLatLon.appendChild(trailLatLonText);
+   newTrailDiv.appendChild(trailLatLon);
+}
+function createTrailDifficultyElements(trail, newTrailDiv) {
+   let trailDiff = document.createElement("p");
+   let trailDiffText = document.createTextNode(trail.difficulty);
+   let difficultyButton = document.createElement("BUTTON"); 
+   difficultyButton.setAttribute("class", "difficultyButton");
+   difficultyButton.setAttribute("onclick", "showDifficultyGuide()");
+   let buttonText = document.createTextNode("?"); 
+   difficultyButton.appendChild(buttonText); 
+   trailDiff.appendChild(trailDiffText);
+   trailDiff.appendChild(difficultyButton); 
+   newTrailDiv.appendChild(trailDiff);
+   modifyTrailDifficultyColor(trail.difficulty, trailDiff); 
+}
+function createTrailLengthText(trail, newTrailDiv) {
+   let trailLength = document.createElement("p");
+   let trailLengthText = document.createTextNode("Length: "+trail.length+" miles");
+   trailLength.appendChild(trailLengthText);
+   newTrailDiv.appendChild(trailLength);
+}
+function createDirectionsElement(trail, newTrailDiv) {
+   let directionsNode = document.getElementById("directionsHolder");
+   let directionsNodeClone = directionsNode.cloneNode(true);
+   directionsNodeClone.style.display = "";
+   directionsNodeClone.childNodes[1].childNodes[7].value = trail.name;
+   newTrailDiv.appendChild(directionsNodeClone);
 }
 
-class Trail {
-   constructor(length, lat, lon, highestElevation, elevationGain, difficulty, photo, name, location) {
-      this.length = length;
-      this.latitude = lat;
-      this.longitude = lon;
-      this.highestElevation = highestElevation;
-      this.elevationGain = elevationGain;
-      this.difficulty = difficulty;
-      this.photo = photo;
-      this.name = name;
-      this.location = location;
-   }
-}
-
-
-/*Builds trail objects from API call of getNearbyTrails() */
-let buildTrails = (trails) => {
+/*Changes trail object difficulties from API call of getNearbyTrails() */
+let calcTrailDifficulty = (trails) => {
    trailArray = [];
    trailArray.length = 0;
    for (i in trails) {
@@ -212,20 +206,9 @@ let buildTrails = (trails) => {
       } else if (trails[i].difficulty === 'green' || trails[i].difficulty === 'greenBlue') {
          trails[i].difficulty = 'EASY';
       }
-      let newTrail = new Trail(
-         trails[i].length, 
-         trails[i].latitude, 
-         trails[i].longitude, 
-         trails[i].high,
-         trails[i].high - trails[i].low,
-         trails[i].difficulty,
-         trails[i].imgMedium,
-         trails[i].name,
-         trails[i].location
-      );
-      trailArray.push(newTrail);
+      trailArray.push(trails[i]);
    }
-   makeTrailDivs(trailArray);
+   makeTrailDivs(trails);
 }
 
 
@@ -299,7 +282,7 @@ function navigateToTrail(thisTrail)
    document.getElementById("trailForm").submit();
 } 
 
-/*IN PROGRESS: get all nearby trails based on 15 miles from Hiking API  */
+/* Get all nearby trails based on 15 miles from Hiking API  */
 let getNearbyTrails = (latitude, longitude) => {
    latString = latitude.toString();
    lonString = longitude.toString();
@@ -309,7 +292,7 @@ let getNearbyTrails = (latitude, longitude) => {
    fetch(hikingAPIURL)
       .then(response => response.json())
       .then((data) => {
-         buildTrails(data.trails);
+         calcTrailDifficulty(data.trails);
          filterTrails();
          showBestChoiceButton();
          endLoading();

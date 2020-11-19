@@ -128,7 +128,7 @@ gearClothesHolder.storeClothes(warmShorts1);
 //head wear
 const coldHead1 = new Clothing('./clothes/coldHead1.jpg', '', [-20,60], 'head', [200, 300, 500, 600, 700, 800, 802]);
 gearClothesHolder.storeClothes(coldHead1);
-const coldHead2 = new Clothing('./clothes/coldHead2.jpg', '', [-20,60], 'head', [200, 300, 500, 600, 700, 800, 802]);
+const coldHead2 = new Clothing('./clothes/coldHead2.jpg', 'Due to the cold weather, one recommendation is to wear an insulated beanie. This will provide maximum warmth.', [-20,60], 'head', [200, 300, 500, 600, 700, 800, 802]);
 gearClothesHolder.storeClothes(coldHead2);
 //jackets
 const coldJacket1 = new Clothing('./clothes/coldJacket1.jpg', '', [45,60], 'jacket', [200, 300, 500, 600, 700, 800, 802]);

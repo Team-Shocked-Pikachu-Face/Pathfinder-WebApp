@@ -19,10 +19,10 @@ class Trail {
     this.length = passedTrail.length;
     this.latitude = passedTrail.latitude;
     this.longitude = passedTrail.longitude;
-    this.highestElevation = passedTrail.highestElevation;
-    this.elevationGain = passedTrail.elevationGain;
+    this.highestElevation = passedTrail.high;
+    this.elevationGain = passedTrail.high - passedTrail.low;
     this.difficulty = passedTrail.difficulty;
-    this.photo = passedTrail.photo;
+    this.photo = passedTrail.imgMedium;
     this.name = passedTrail.name;
     this.location = passedTrail.location;
     this.recommendation = recommendation;
