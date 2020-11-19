@@ -1,13 +1,3 @@
-// Allow the user to search by pressing enter rather than by using the search button
-document.getElementById("Hike_Search_Bar")
-   .addEventListener("keyup", function(event) {
-   event.preventDefault();
-   
-   // If the enter key is hit, click the search button
-   if (KeyboardEvent.code === 13) {
-      document.getElementById("Search_Button").click();
-   }
-});
 
 // initialize variables to store the user location
 var latitude; 
@@ -200,11 +190,11 @@ let calcTrailDifficulty = (trails) => {
    trailArray.length = 0;
    for (i in trails) {
       if (trails[i].difficulty === 'black' || trails[i].difficulty === 'blueBlack') {
-         trails[i].difficulty = 'HARD';
+         trails[i].difficulty = TRAIL_DIFFICULTY_HARD;
       } else if (trails[i].difficulty === 'blue') {
-         trails[i].difficulty = 'MEDIUM'; 
+         trails[i].difficulty = TRAIL_DIFFICULTY_MEDIUM; 
       } else if (trails[i].difficulty === 'green' || trails[i].difficulty === 'greenBlue') {
-         trails[i].difficulty = 'EASY';
+         trails[i].difficulty = TRAIL_DIFFICULTY_EASY;
       }
       trailArray.push(trails[i]);
    }
@@ -217,17 +207,17 @@ its difficulty level and makes it bold.*/
 let modifyTrailDifficultyColor = (difficulty, trailDiff) =>
 {
    // Bolden each trail and color it accordingly. 
-   if(difficulty === 'EASY')
+   if(difficulty === TRAIL_DIFFICULTY_EASY)
    {   
       trailDiff.style.color = 'green';
       trailDiff.style.fontWeight = "900"
    }
-   else if(difficulty === 'MEDIUM')
+   else if(difficulty === TRAIL_DIFFICULTY_MEDIUM)
    {  
       trailDiff.style.color = 'orange';
       trailDiff.style.fontWeight = "900"
    }
-   else if(difficulty === 'HARD')
+   else if(difficulty === TRAIL_DIFFICULTY_HARD)
    {  
       trailDiff.style.color = 'red';
       trailDiff.style.fontWeight = "900"
@@ -318,6 +308,7 @@ let endLoading = () => {
    el.className = '';
 };
 
+
 /**
  * Calculate the best trail difficulty based on user's fitness level and mood.
  * @return null|string - trail difficulty
@@ -334,6 +325,15 @@ function calculateBestChoice() {
       return null;
    }
 
+   result = calculateDifficulty(fitnessLevel, userMood)
+   return result
+}
+
+
+/* This function determines the difficulty of trails to recommend 
+to the user based on the user's fitness level and their input mood */
+function calculateDifficulty(fitnessLevel, userMood)
+{
    switch (fitnessLevel) {
       case FITNESS_LEVEL_LOW:
          switch (userMood) {
@@ -366,6 +366,7 @@ function calculateBestChoice() {
          }
    }
 }
+
 
 /**
  * Filter trails by the user's fitness level and mood

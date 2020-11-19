@@ -198,33 +198,10 @@ function calculateFitness(userProfile) {
     let activity_level = userProfile.activity_level;
 
     let fitness_points = 0;
-    if (activity_level == "Sedentary") {
-        fitness_points = 1;
-    } else if (activity_level == "Lightly Active") {
-        fitness_points = 2;
-    } else if (activity_level == "Moderately Active") {
-        fitness_points = 3;
-    } else if (activity_level == "Highly Active") {
-        fitness_points = 4;
-    }
 
-    if (bmi > 40) {
-        fitness_points -= 4;
-    } else if (bmi > 35) {
-        fitness_points -= 3;
-    } else if (bmi > 30) {
-        fitness_points -= 2;
-    } else if (bmi > 25) {
-        fitness_points -= 1;
-    } else if (bmi < 5) {
-        fitness_points -= 4;
-    } else if (bmi < 10) {
-        fitness_points -= 3;
-    } else if (bmi < 15) {
-        fitness_points -= 2;
-    } else if (bmi < 18.5) {
-        fitness_points -= 1;
-    }
+    fitness_points = activity_level_calc(fitness_points, activity_level)
+
+    fitness_points = bmi_calc(bmi, fitness_points)
 
     if (age > 70 || age < 6) {
         fitness_points -= 1;
@@ -241,6 +218,51 @@ function calculateFitness(userProfile) {
 
     return fitness_level;
 }
+
+
+/* This function changes the fitness level points of the user 
+based on the user's activity level for the user's fitness level calc*/
+function activity_level_calc(fitness_points, activity_level)
+{
+   // Assign the user fitness points based on their activity level
+   if (activity_level == "Sedentary") {
+      fitness_points = 1;
+  } else if (activity_level == "Lightly Active") {
+      fitness_points = 2;
+  } else if (activity_level == "Moderately Active") {
+      fitness_points = 3;
+  } else if (activity_level == "Highly Active") {
+      fitness_points = 4;
+  }
+  return fitness_points
+}
+
+
+/* This function changes the fitness_points of the user based on their 
+input BMI for the user's fitness level calculation */
+function bmi_calc(bmi, fitness_points)
+{
+   // modify the user's fitness points based on their bmi
+   if (bmi > 40) {
+      fitness_points -= 4;
+  } else if (bmi > 35) {
+      fitness_points -= 3;
+  } else if (bmi > 30) {
+      fitness_points -= 2;
+  } else if (bmi > 25) {
+      fitness_points -= 1;
+  } else if (bmi < 5) {
+      fitness_points -= 4;
+  } else if (bmi < 10) {
+      fitness_points -= 3;
+  } else if (bmi < 15) {
+      fitness_points -= 2;
+  } else if (bmi < 18.5) {
+      fitness_points -= 1;
+  }
+   return fitness_points
+}
+
 
 function emptyFieldExists(userProfile) {
     // check that the user selected values for dropdown lists
