@@ -1,5 +1,4 @@
 
-
 // initialize variables to store the user location
 var latitude; 
 var longitude; 
@@ -326,6 +325,7 @@ let endLoading = () => {
    el.className = '';
 };
 
+
 /**
  * Calculate the best trail difficulty based on user's fitness level and mood.
  * @return null|string - trail difficulty
@@ -342,6 +342,15 @@ function calculateBestChoice() {
       return null;
    }
 
+   result = calculateDifficulty(fitnessLevel, userMood)
+   return result
+}
+
+
+/* This function determines the difficulty of trails to recommend 
+to the user based on the user's fitness level and their input mood */
+function calculateDifficulty(fitnessLevel, userMood)
+{
    switch (fitnessLevel) {
       case FITNESS_LEVEL_LOW:
          switch (userMood) {
@@ -374,6 +383,7 @@ function calculateBestChoice() {
          }
    }
 }
+
 
 /**
  * Filter trails by the user's fitness level and mood
