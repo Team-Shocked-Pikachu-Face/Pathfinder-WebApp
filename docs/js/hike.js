@@ -196,11 +196,11 @@ let buildTrails = (trails) => {
    trailArray.length = 0;
    for (i in trails) {
       if (trails[i].difficulty === 'black' || trails[i].difficulty === 'blueBlack') {
-         trails[i].difficulty = 'HARD';
+         trails[i].difficulty = TRAIL_DIFFICULTY_HARD;
       } else if (trails[i].difficulty === 'blue') {
-         trails[i].difficulty = 'MEDIUM'; 
+         trails[i].difficulty = TRAIL_DIFFICULTY_MEDIUM; 
       } else if (trails[i].difficulty === 'green' || trails[i].difficulty === 'greenBlue') {
-         trails[i].difficulty = 'EASY';
+         trails[i].difficulty = TRAIL_DIFFICULTY_EASY;
       }
       let newTrail = new Trail(
          trails[i].length, 
@@ -224,17 +224,17 @@ its difficulty level and makes it bold.*/
 let modifyTrailDifficultyColor = (difficulty, trailDiff) =>
 {
    // Bolden each trail and color it accordingly. 
-   if(difficulty === 'EASY')
+   if(difficulty === TRAIL_DIFFICULTY_EASY)
    {   
       trailDiff.style.color = 'green';
       trailDiff.style.fontWeight = "900"
    }
-   else if(difficulty === 'MEDIUM')
+   else if(difficulty === TRAIL_DIFFICULTY_MEDIUM)
    {  
       trailDiff.style.color = 'orange';
       trailDiff.style.fontWeight = "900"
    }
-   else if(difficulty === 'HARD')
+   else if(difficulty === TRAIL_DIFFICULTY_HARD)
    {  
       trailDiff.style.color = 'red';
       trailDiff.style.fontWeight = "900"
