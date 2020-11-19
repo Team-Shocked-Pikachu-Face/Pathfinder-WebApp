@@ -1,13 +1,4 @@
-// Allow the user to search by pressing enter rather than by using the search button
-document.getElementById("Hike_Search_Bar")
-   .addEventListener("keyup", function(event) {
-   event.preventDefault();
-   
-   // If the enter key is hit, click the search button
-   if (KeyboardEvent.code === 13) {
-      document.getElementById("Search_Button").click();
-   }
-});
+
 
 // initialize variables to store the user location
 var latitude; 
