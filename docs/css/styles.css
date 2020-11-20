@@ -33,6 +33,10 @@
 .ui.main.container {
    margin-top: 5em;
 }
+/* Set the get started button closer to the center of the image*/
+.get_started {
+   margin-top: 55px !important; 
+}
 
 /* Trail divs */
 

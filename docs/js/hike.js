@@ -123,8 +123,9 @@ function createTrailImage(trail, newTrailDiv) {
    trailImage.src = trail.imgMedium; //******** */
    trailImage.onclick = function (trail) {
       return function() {
-      sessionStorage.setItem('trail', JSON.stringify(trail));
-      window.location.href = "recommend.html";
+      // Get the trail's url and navigate to the trail page for the API
+      let url = trail.url.toString()
+      window.location.href = url;
       }
    }(trail);
 
