@@ -2,7 +2,7 @@
 
 Pathfinder is a web application built with HTML5, CSS3 and JavaScript. The application utilizes Google API's and the Hiking Project Data API. 
 
-Use the app to create a profile, search for hiking trails nearby, navigate to trails and get gear recommendations for your outdoor trek! 
+Use the app to create a profile, search for hiking trails nearby, navigate to trails and get gear recommendations specifically tailored for you and your outdoor trek! 
 
 # Instructions for use
 
