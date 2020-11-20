@@ -81,7 +81,6 @@ function autoCompleteLocationSearchBar()
    });
 }
 
-
 let makeTrailDivs = (trails) => {
    let parentDiv = document.getElementById("trails");
    clearTrailDivs(parentDiv);
@@ -108,6 +107,7 @@ function clearTrailDivs(parentDiv) {
       parentDiv.firstChild.remove();
    }
 }
+
 function createTrailAPIInfoElements(parentDiv) {
    let hikingAPIInfo = document.createElement("p");
    let APIText = document.createTextNode("All trail photos and information from https://www.hikingproject.com");
@@ -118,6 +118,7 @@ function createTrailAPIInfoElements(parentDiv) {
    hikingAPIInfo.appendChild(APIText);
    parentDiv.appendChild(hikingAPIInfo);
 }
+
 function createTrailImage(trail, newTrailDiv) {
    let trailImage = document.createElement("img");
    trailImage.src = trail.imgMedium; //******** */
@@ -145,6 +146,7 @@ function createTrailNameLocationText(trail, newTrailDiv) {
    trailLocation.appendChild(trailLocationText);
    newTrailDiv.append(trailLocation);
 }
+
 function createTrailLatLonPin(trail, newTrailDiv) {
    // Add a pin image to each trail next to the lat and lon
    let pinImage = document.createElement("img"); 
@@ -159,6 +161,7 @@ function createTrailLatLonPin(trail, newTrailDiv) {
    trailLatLon.appendChild(trailLatLonText);
    newTrailDiv.appendChild(trailLatLon);
 }
+
 function createTrailDifficultyElements(trail, newTrailDiv) {
    let trailDiff = document.createElement("p");
    trailDiff.setAttribute("class", "trail_info");
@@ -178,6 +181,7 @@ function createTrailDifficultyElements(trail, newTrailDiv) {
 
    modifyTrailDifficultyColor(trail.difficulty, trailDiff); 
 }
+
 function createTrailLengthText(trail, newTrailDiv) {
    let trailLength = document.createElement("p");
    trailLength.setAttribute("class", "trail_info");
@@ -202,6 +206,10 @@ function createTrailLengthText(trail, newTrailDiv) {
    gearButton.appendChild(backpackImg);
    newTrailDiv.appendChild(gearButton); 
 }
+
+/**
+ * Helper to create and append a new directions element to the existing directions holder.
+ */
 function createDirectionsElement(trail, newTrailDiv) {
    let directionsNode = document.getElementById("directionsHolder");
    let directionsNodeClone = directionsNode.cloneNode(true);
@@ -226,7 +234,6 @@ let calcTrailDifficulty = (trails) => {
    }
    makeTrailDivs(trails);
 }
-
 
 /*this function colors the text for each trail's difficulty based on 
 its difficulty level and makes it bold.*/
@@ -263,7 +270,6 @@ function hideDifficultyGuide ()
 {
    $('.difficultyGuide').hide();
 }
-
 
 // NavigateToTrail gets the input text the user entered in the From and To field on a particular trail and brings the user to google maps with the from and to boxes filled when they click the button. 
 function navigateToTrail(thisTrail)
@@ -355,7 +361,6 @@ function calculateBestChoice() {
    return result
 }
 
-
 /* This function determines the difficulty of trails to recommend 
 to the user based on the user's fitness level and their input mood */
 function calculateDifficulty(fitnessLevel, userMood)
@@ -393,7 +398,6 @@ function calculateDifficulty(fitnessLevel, userMood)
    }
 }
 
-
 /**
  * Filter trails by the user's fitness level and mood
  */
@@ -424,6 +428,7 @@ function showNoTrailsFoundMessage() {
    const el = document.getElementById('no_trails_found');
    el.style.display = '';
 }
+
 function hideNoTrailsFoundMessage() {
    const el = document.getElementById('no_trails_found');
    el.style.display = 'none';
