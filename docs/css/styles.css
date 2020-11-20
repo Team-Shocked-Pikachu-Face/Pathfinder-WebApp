@@ -166,3 +166,14 @@ trail difficulty*/
 .diffDescription {
    text-align: center; 
 }
+
+/* Style the elements within the trail divs*/
+.trail_info {
+   padding-left: 15px; 
+}
+.pin_image {
+   padding-left: 15px;
+   display: inline-block;
+   margin-right: 10px;
+}
+

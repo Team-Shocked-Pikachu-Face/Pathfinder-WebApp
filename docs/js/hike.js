@@ -33,15 +33,13 @@ function geolocate()
 }
 
 function retrieveLatitudeLongitude(results) {
-  latitude = results[0].geometry.location.lat();
-  longitude = results[0].geometry.location.lng();
-         
-  // Print to the console for testing
-  console.log(latitude); 
-  console.log(longitude); 
+  
+   // Get the latitiude and longitude
+   latitude = results[0].geometry.location.lat();
+   longitude = results[0].geometry.location.lng(); 
 
-  //call getNearbyTrails() for hiking API
-  getNearbyTrails(latitude, longitude);
+   //call getNearbyTrails() for hiking API
+   getNearbyTrails(latitude, longitude);
 }
 
 /*Summary: The autoComplete function instantiates when the page loads and autocompletes the address the user may be typing. It provides the user with options to autocomplete the entry */
@@ -134,12 +132,14 @@ function createTrailImage(trail, newTrailDiv) {
 }
 function createTrailNameLocationText(trail, newTrailDiv) {
    let trailName = document.createElement("h2");
+   trailName.setAttribute("class", "trail_info")
    let trailNameText = document.createTextNode(trail.name)
    trailName.appendChild(trailNameText);
    newTrailDiv.appendChild(trailName)
    
    //create trail location paragraph
    let trailLocation = document.createElement("p");
+   trailLocation.setAttribute("class", "trail_info")
    let trailLocationText = document.createTextNode(trail.location);
    trailLocation.appendChild(trailLocationText);
    newTrailDiv.append(trailLocation);
@@ -147,21 +147,24 @@ function createTrailNameLocationText(trail, newTrailDiv) {
 function createTrailLatLonPin(trail, newTrailDiv) {
    // Add a pin image to each trail next to the lat and lon
    let pinImage = document.createElement("img"); 
-   pinImage.src="http://clipart-library.com/image_gallery/n622173.jpg"; 
-   pinImage.style.width = '6%'; 
-   pinImage.style.height = 'auto'; 
+   pinImage.src="./images/pin.png"; 
+   pinImage.style.width = 'auto'; 
+   pinImage.style.height = '15px'; 
+   pinImage.setAttribute("class", "pin_image")
 
    let trailLatLon = document.createElement("p");
-   let trailLatLonText = document.createTextNode("Lat: "+trail.latitude+"     Lon: "+trail.longitude);
+   let trailLatLonText = document.createTextNode("Lat: "+trail.latitude+" Lon: "+trail.longitude);
    trailLatLon.appendChild(pinImage); //Add pin image next to location
    trailLatLon.appendChild(trailLatLonText);
    newTrailDiv.appendChild(trailLatLon);
 }
 function createTrailDifficultyElements(trail, newTrailDiv) {
    let trailDiff = document.createElement("p");
+   trailDiff.setAttribute("class", "trail_info")
    let trailDiffText = document.createTextNode(trail.difficulty);
    let difficultyButton = document.createElement("BUTTON"); 
    difficultyButton.setAttribute("class", "difficultyButton");
+   difficultyButton.setAttribute("title", "Learn more about trail difficulties");
    difficultyButton.setAttribute("onclick", "showDifficultyGuide()");
    let buttonText = document.createTextNode("?"); 
    difficultyButton.appendChild(buttonText); 
@@ -172,9 +175,25 @@ function createTrailDifficultyElements(trail, newTrailDiv) {
 }
 function createTrailLengthText(trail, newTrailDiv) {
    let trailLength = document.createElement("p");
+   trailLength.setAttribute("class", "trail_info")
    let trailLengthText = document.createTextNode("Length: "+trail.length+" miles");
-   trailLength.appendChild(trailLengthText);
+   let gearButton = document.createElement("p")
+   let backpackImg = document.createElement("img");
+   backpackImg.src="./images/backpackButton.jpg"; 
+   backpackImg.style.width = 'auto'; 
+   backpackImg.style.height = '30px';
+   backpackImg.setAttribute("title", "Trail info/gear recommendations");
+   backpackImg.setAttribute("class", "trail_info") 
+   backpackImg.onclick = function (trail) {
+      return function() {
+      sessionStorage.setItem('trail', JSON.stringify(trail));
+      window.location.href = "recommend.html";
+      }
+   }(trail);
+   trailLength.appendChild(trailLengthText); 
    newTrailDiv.appendChild(trailLength);
+   gearButton.appendChild(backpackImg);
+   newTrailDiv.appendChild(gearButton); 
 }
 function createDirectionsElement(trail, newTrailDiv) {
    let directionsNode = document.getElementById("directionsHolder");
