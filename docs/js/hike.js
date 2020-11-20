@@ -161,36 +161,42 @@ function createTrailLatLonPin(trail, newTrailDiv) {
 }
 function createTrailDifficultyElements(trail, newTrailDiv) {
    let trailDiff = document.createElement("p");
-   trailDiff.setAttribute("class", "trail_info")
+   trailDiff.setAttribute("class", "trail_info");
    let trailDiffText = document.createTextNode(trail.difficulty);
+
    let difficultyButton = document.createElement("BUTTON"); 
    difficultyButton.setAttribute("class", "difficultyButton");
    difficultyButton.setAttribute("title", "Learn more about trail difficulties");
    difficultyButton.setAttribute("onclick", "showDifficultyGuide()");
+
    let buttonText = document.createTextNode("?"); 
    difficultyButton.appendChild(buttonText); 
+
    trailDiff.appendChild(trailDiffText);
    trailDiff.appendChild(difficultyButton); 
    newTrailDiv.appendChild(trailDiff);
+
    modifyTrailDifficultyColor(trail.difficulty, trailDiff); 
 }
 function createTrailLengthText(trail, newTrailDiv) {
    let trailLength = document.createElement("p");
-   trailLength.setAttribute("class", "trail_info")
+   trailLength.setAttribute("class", "trail_info");
    let trailLengthText = document.createTextNode("Length: "+trail.length+" miles");
-   let gearButton = document.createElement("p")
+   let gearButton = document.createElement("p");
    let backpackImg = document.createElement("img");
+
    backpackImg.src="./images/backpackButton.jpg"; 
    backpackImg.style.width = 'auto'; 
    backpackImg.style.height = '30px';
    backpackImg.setAttribute("title", "Trail info/gear recommendations");
-   backpackImg.setAttribute("class", "trail_info") 
+   backpackImg.setAttribute("class", "trail_info");
    backpackImg.onclick = function (trail) {
       return function() {
       sessionStorage.setItem('trail', JSON.stringify(trail));
       window.location.href = "recommend.html";
       }
    }(trail);
+
    trailLength.appendChild(trailLengthText); 
    newTrailDiv.appendChild(trailLength);
    gearButton.appendChild(backpackImg);
