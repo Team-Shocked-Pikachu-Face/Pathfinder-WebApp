@@ -16,7 +16,7 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
-    
+
     <title>Fitness Level Calculator</title>
 </head>
 
@@ -34,7 +34,7 @@
         </div>
     </header>
 
-    <main class="ui main text container">
+    <main id="calculator" class="ui main text container">
         <!-- return false to prevent form POST refreshing page -->
         <form id="user_form" class="ui form raised segment" onsubmit="return false">
             <h1 id="page_header" class="ui header">
@@ -156,10 +156,10 @@
 
             <div class="ui center aligned grid">
                 <div class="column" >
-                    <button class="ui green button" onclick="submitData();">Calculate Fitness Level!</button>
+                    <button class="ui big green button" onclick="submitData();">Calculate Fitness Level!</button>
                     <p>
                         <h3 id="yourResultText" hidden>Your Estimated Fitness Level: </h3>
-                        <p id="profilePrompt" hidden><small><a href="profile.html">User Profile</a> is now available!</small></p>
+                        <p id="profilePrompt" hidden><small><a href="profile.html">User Profile</a> and <a href="hike.html">Best Fit Search</a> are now available!</small></p>
                     </p>
                 </div>
             </div>

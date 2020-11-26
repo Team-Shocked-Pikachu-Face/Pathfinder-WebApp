@@ -1,3 +1,6 @@
+/* Import google font */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
 /*align feature list div*/
 
 .features {
@@ -70,13 +73,35 @@
    background-color: #a3b4a4
 }
 
+/* User Profile page */
+
+#user_summary, #user_summary .ui.button, #user_summary h1.ui.header {
+   font-family: 'Poppins', sans-serif;
+}
+
+.ui.very.basic.table {
+   /* font-family: 'Poppins', sans-serif; */
+   font-size: 1.15em;
+}
+
 .ui.very.basic.table tr td:first-child {
    color: #32b136;
-   font-weight: bold;
+   font-weight: 600;
 }
 
 .ui.very.basic.table tr td#fitness_level {
    font-weight: bold;
+}
+
+/* Calculator Page */
+
+#calculator, #calculator .ui.button, #calculator .header {
+   font-family: 'Poppins', sans-serif;
+}
+
+#yourResultText {
+   font-family: 'Poppins', sans-serif;
+   font-size: 1.5em;
 }
 
 .ui.inverted.masthead {
