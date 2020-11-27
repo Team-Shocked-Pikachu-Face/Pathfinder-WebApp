@@ -50,17 +50,17 @@
 /* Trail divs */
 
 #trails .one.column.centered.row {
-   border: 0.2em solid #32b136;
+   border: 2px solid #32b136;
    border-radius: 1.5em;
-   padding: 0.4em;
+   padding: 0em;
    margin-top: 1em;
    height: 38%;
+   overflow: hidden;
 }
 
 #trails .one.column.centered.row img {
    width: 100%;
    max-height: 40vh;
-   border-radius: 1.5em;
 }
 
 #trails .one.column.centered.row h2, .one.column.centered.row p {
