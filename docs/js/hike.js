@@ -349,11 +349,9 @@ function calculateBestChoice() {
    const fitnessLevel = JSON.parse(sessionStorage.getItem('fitnessLevel'));
    const userMood = JSON.parse(sessionStorage.getItem('userMood'));
    if (!fitnessLevel) {
-      console.error('Could not get fitness level');
       return null;
    }
    if (!userMood) {
-      console.error('Could not get user mood');
       return null;
    }
 
