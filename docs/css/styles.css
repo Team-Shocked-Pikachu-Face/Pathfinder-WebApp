@@ -52,7 +52,7 @@
 #trails .one.column.centered.row {
    border: 0.2em solid #32b136;
    border-radius: 1.5em;
-   padding: 0.1em;
+   padding: 0.4em;
    margin-top: 1em;
    height: 38%;
 }
@@ -60,7 +60,7 @@
 #trails .one.column.centered.row img {
    width: 100%;
    max-height: 40vh;
-   border-radius: 0.8em;
+   border-radius: 1.5em;
 }
 
 #trails .one.column.centered.row h2, .one.column.centered.row p {
@@ -71,6 +71,10 @@
    margin: 10em 0em 0em 0em;
    padding: 5em 0em;
    background-color: #a3b4a4
+}
+
+h1, h2, h3, #pathfinder_home h1 {
+   font-family: 'Poppins', sans-serif;
 }
 
 /* User Profile page */
@@ -162,6 +166,18 @@
    background-repeat: no-repeat;
    background-position: top left;
    background-size: 40px;
+}
+
+/* Add styling to directions holder */
+#directionsHolder {
+   margin-bottom: 1em;
+}
+input#from, input#to, #directionsHolder input {
+   border-radius: 50px;
+   border: 2px solid grey;
+}
+#directionsHolderMain button, #directionsHolder button {
+   padding: 0.25em;
 }
 
 /* Creates a round ? button and spaces it apart from the 
