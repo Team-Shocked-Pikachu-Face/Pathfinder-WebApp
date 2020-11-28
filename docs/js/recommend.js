@@ -125,6 +125,11 @@ function attachJacketRecommendations(recommendations) {
         let image = document.createElement('img');
         image.src = jacket[i].getImage();
         jacketImages.appendChild(image);
+        $(image)
+            .popup({
+                content : jacket[i].getDescription()
+            })
+        ;
     }
 }
 
@@ -135,6 +140,11 @@ function attachShirtRecommendations(recommendations) {
         let image = document.createElement('img');
         image.src = shirt[i].getImage();
         shirtImages.appendChild(image);
+        $(image)
+            .popup({
+                content : shirt[i].getDescription()
+            })
+        ;
     }
 }
 
@@ -145,6 +155,11 @@ function attachPantRecommendations(recommendations) {
         let image = document.createElement('img');
         image.src = pant[i].getImage();
         pantImages.appendChild(image);
+        $(image)
+            .popup({
+                content : pant[i].getDescription()
+            })
+        ;
     }
 }
 
@@ -155,6 +170,11 @@ function attachFootwearRecommendations(recommendations) {
         let image = document.createElement('img');
         image.src = footwear[i].getImage();
         footwearImages.appendChild(image);
+        $(image)
+            .popup({
+                content : footwear[i].getDescription()
+            })
+        ;
     }
 }
 
@@ -165,5 +185,10 @@ function attachGearRecommendations(recommendations) {
         let image = document.createElement('img');
         image.src = gear[i].getImage();
         gearImages.appendChild(image);
+        $(image)
+            .popup({
+                content : gear[i].getDescription()
+            })
+        ;
     }
 }
