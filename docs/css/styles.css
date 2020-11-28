@@ -145,7 +145,7 @@ h1, h2, h3, #pathfinder_home h1 {
 .ui.styled.fluid.accordion img {
    text-align: center;
    margin-right: 5%;
-   width: 13em;
+   width: auto;
    height: 13em;
 }
 

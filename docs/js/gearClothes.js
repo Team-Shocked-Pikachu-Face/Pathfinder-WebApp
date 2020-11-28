@@ -31,7 +31,7 @@ class RecommendedItem {
     #description
     #tempRange
     #weatherCodes
-    constructor(image, description, tempRange, weatherCodes) {
+    constructor(image, description, tempRange, weatherCodes) { 
         this.#image = image;
         this.#description = description;
         this.#tempRange = tempRange;
@@ -187,15 +187,14 @@ gearClothesHolder.storeGear(sunglasses);
 const poncho = new Gear('./gear/poncho.jpg', '', [60,130], 0, [0,200], [200, 500]);
 gearClothesHolder.storeGear(poncho);
 //snack short
-const snack1 = new Gear('./gear/snack1.jpg', '', [-20,130], 0, [0,200], [200, 300, 500, 600, 700, 800, 802]);
+const snack1 = new Gear('./gear/snack1.jpg', '', [-20,130], 0, [0,200], [200, 300, 500, 600, 700, 800, 802]); 
 gearClothesHolder.storeGear(snack1);
 //snack medium
 const snack2 = new Gear('./gear/snack2.jpg', '', [-20,130], 0, [5, 200], [200, 300, 500, 600, 700, 800, 802]);
-gearClothesHolder.storeGear(snack2);
+gearClothesHolder.storeGear(snack2); 
 //snack long
 const snack3 = new Gear('./gear/snack3.jpg', '', [-20,130], 0, [10, 200], [200, 300, 500, 600, 700, 800, 802]);
 gearClothesHolder.storeGear(snack3);
-
 console.log(gearClothesHolder.getClothes());
 console.log(gearClothesHolder.getGear());
 
