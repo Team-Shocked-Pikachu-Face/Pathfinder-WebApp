@@ -1,4 +1,5 @@
 class GearClothCollection {
+    /* Object to that stores Gear and Cloth objects */
     #clothes
     #gear
     constructor() {
@@ -27,6 +28,7 @@ const gearClothesHolder = new GearClothCollection;
 
 
 class RecommendedItem {
+    /* Super class of a recommended item for a hiker to bring or wear */
     #image
     #description
     #tempRange
@@ -52,15 +54,18 @@ class RecommendedItem {
 }
 
 class Gear extends RecommendedItem{
+    /* A type of item that a hiker would bring to a trail that isn't clothing */
     #elevationGain
     #distanceRange
     constructor(image, description, tempRange, elevationGain, distanceRange, weatherCodes) {
         super(image, description, tempRange, weatherCodes);
         this.#elevationGain = elevationGain;
         this.#distanceRange = distanceRange;
-        // this.#weatherCodes = weatherCodes;
     }
     checkGear(temp, elevationGain, distance, weatherCode) {
+        /* Check the temp range, elevation gain, distance range, and weather code of an item to see if
+           it should be recommended.
+         */ 
         if(temp >= (this.getTempRange())[0] && temp <= (this.getTempRange())[1]) {
             if(elevationGain >=this.#elevationGain) {
                 if(distance >= this.#distanceRange[0] && distance <= this.#distanceRange[1]) {
@@ -75,12 +80,14 @@ class Gear extends RecommendedItem{
 }
 
 class Clothing extends RecommendedItem{
-    #type
+    /* An type of item that is an article of clothing a hiker might wear */
+    #type // what body part the article of clothing is for.
     constructor(image, description, tempRange, type, weatherCodes) {
         super(image, description, tempRange, weatherCodes)
         this.#type = type;
     }
     checkClothing(temp, weatherCode) {
+        /* Check the temp range and weather code of a Clothing object to see if it should be recommended */
         if(temp >= (this.getTempRange())[0] && temp <= (this.getTempRange())[1]) {
             if(this.getWeatherCodes().includes(weatherCode)) {
                 return true;
@@ -244,6 +251,11 @@ gearClothesHolder.storeGear(snack3);
 
 
 class Recommendation {
+    /* 
+    An object that stores a GearClothCollection of clothing and items,
+    It can build a recommendation based on its trail's object attributes.
+    It is a singleton, so there will only be one possible for a trail (constructor singleton).
+    */
     #recommendations
     #GearClothCollection
     constructor (GearClothCollection) {
@@ -262,6 +274,7 @@ class Recommendation {
         return Recommendation.instance;
     }
     buildRecommendation(elevation, elevationGain, distance, temp, weatherCode) {
+        /* Finds what clothing and gear items that are from it's GearClothCollection object */
         const clothes = this.#GearClothCollection.getClothes();
         for(let i in clothes) {
             if(clothes[i].checkClothing(temp, weatherCode)) {
