@@ -288,9 +288,11 @@ function navigateToTrail(thisTrail)
    toLocation = document.getElementById('trailTo').value;
 
    if(!fromLocation) {
-   		window.alert("Enter a starting location to get directions");
+   		window.alert("Enter a starting location to get directions.");
    }
-
+   else if(!toLocation) {
+   		window.alert("Enter a destination location to get directions.");
+   }
    else{
    		// set the saddr and daddr name attributes for the inputs
    		let fromInput = document.getElementById('trailFrom');
