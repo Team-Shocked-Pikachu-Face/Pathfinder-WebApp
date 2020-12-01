@@ -287,6 +287,10 @@ function navigateToTrail(thisTrail)
    fromLocation = document.getElementById('trailFrom').value;
    toLocation = document.getElementById('trailTo').value;
 
+   if(!fromLocation) {
+   		window.alert("Enter a starting location to get directions");
+   }
+
    // set the saddr and daddr name attributes for the inputs
    let fromInput = document.getElementById('trailFrom');
    fromInput.setAttribute("name", "saddr");
