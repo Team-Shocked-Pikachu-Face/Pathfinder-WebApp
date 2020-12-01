@@ -287,21 +287,29 @@ function navigateToTrail(thisTrail)
    fromLocation = document.getElementById('trailFrom').value;
    toLocation = document.getElementById('trailTo').value;
 
-   // set the saddr and daddr name attributes for the inputs
-   let fromInput = document.getElementById('trailFrom');
-   fromInput.setAttribute("name", "saddr");
-   // set the value that was retrieved from user input for from and to
-   fromInput.value = fromLocation;
+   if(!fromLocation) {
+   		window.alert("Enter a starting location to get directions.");
+   }
+   else if(!toLocation) {
+   		window.alert("Enter a destination location to get directions.");
+   }
+   else{
+   		// set the saddr and daddr name attributes for the inputs
+   		let fromInput = document.getElementById('trailFrom');
+   		fromInput.setAttribute("name", "saddr");
+   		// set the value that was retrieved from user input for from and to
+   		fromInput.value = fromLocation;
 
-   let toInput = document.getElementById('trailTo');
-   toInput.setAttribute("name", "daddr");
-   toInput.value = toLocation;
+   		let toInput = document.getElementById('trailTo');
+   		toInput.setAttribute("name", "daddr");
+   		toInput.value = toLocation;
 
-   // Set an id for the form to be submitted
-   form.id = "trailForm"; 
+   		// Set an id for the form to be submitted
+   		form.id = "trailForm"; 
 
-   // redirect using the submit form
-   document.getElementById("trailForm").submit();
+   		// redirect using the submit form
+   		document.getElementById("trailForm").submit();
+	}
 } 
 
 /* Get all nearby trails based on 15 miles from Hiking API  */
