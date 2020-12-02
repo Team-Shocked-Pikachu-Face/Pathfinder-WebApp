@@ -14,9 +14,11 @@ If for any reason the url above is not functioning, the latest release of pathfi
 
 https://github.com/Team-Shocked-Pikachu-Face/Pathfinder-WebApp/releases
 
-1. Click on "Assets" at the bottom of the page.
+1. The latest release will be at the top of the page
 
-2. Click on latest Release.rar to download the files to your local computer. Make sure not to choose the Source Code (zip) to download.
+2. Click on "Assets" under the latest release.
+
+2. Click on Releasev1.0.0.rar to download the files to your local computer. Make sure not to choose the Source Code (zip) to download.
 
 3. Unzip the files in any directory you choose.
 
