@@ -90,12 +90,13 @@ let makeTrailDivs = (trails) => {
     for (i in trails) {
         //create a trail div to hold all trail information
         let newTrailDiv = document.createElement("div");
-        newTrailDiv.className = "one column centered row";
+        newTrailDiv.className = "ui raised segment one column centered row";
         newTrailDiv.id = "trail" + i.toString();
         createTrailImage(trails[i], newTrailDiv);
         createTrailNameLocationText(trails[i], newTrailDiv);
-        createTrailLatLonPin(trails[i], newTrailDiv);
         createTrailDifficultyElements(trails[i], newTrailDiv);
+
+        createTrailLatLonPin(trails[i], newTrailDiv);
         createTrailLengthText(trails[i], newTrailDiv);
         createDirectionsElement(trails[i], newTrailDiv);
         parentDiv.appendChild(newTrailDiv);
@@ -126,6 +127,7 @@ function createTrailAPIInfoElements(parentDiv) {
 function createTrailImage(trail, newTrailDiv) {
     let trailImage = document.createElement("img");
     trailImage.src = trail.imgMedium; //******** */
+    trailImage.setAttribute("class", "ui fluid image");
     trailImage.onclick = (function (trail) {
         return function () {
             // Get the trail's url and navigate to the trail page for the API
@@ -199,7 +201,7 @@ function createTrailLengthText(trail, newTrailDiv) {
     );
 
     let gearButton = document.createElement("button");
-    gearButton.setAttribute("class", "ui blue button");
+    gearButton.setAttribute("class", "ui large blue button");
     gearButton.textContent = "Gear Recommendations";
     gearButton.style.padding = ".5em 1em";
     gearButton.style.marginBottom = "1em";
@@ -234,6 +236,7 @@ function createTrailLengthText(trail, newTrailDiv) {
 function createDirectionsElement(trail, newTrailDiv) {
     let directionsNode = document.getElementById("directionsHolderMain");
     let directionsNodeClone = directionsNode.cloneNode(true);
+    directionsNodeClone.hidden = false;
     // clear starting address
     directionsNodeClone.querySelector("input[name='saddr']").value = "";
     // populate destination address

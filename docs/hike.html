@@ -45,34 +45,39 @@
    </header>
    <div class="ui centered grid" style="width: 60; margin: 0 auto;">
       <div class="one column row">
-         <h2>Search For Hikes</h2>
+         <h2>Search For Nearby Hikes</h2>
       </div>
       <div class="two column row">
-         <div class="ui search">
+         <div class="ui big search icon input">
             <input id="Hike_Search_Bar" class="prompt" type="search" placeholder="Enter a City, State or Zip code..."
                size="30" results autofocus>
+            <i class="large search icon"></i>
          </div>
-         <button id="Search_Button" class="ui inverted green button" type="submit" onclick="geolocate()">SEARCH</button>
+         <button id="Search_Button" class="ui big inverted green button" type="submit" onclick="geolocate()">SEARCH</button>
       </div>
-      <div class="one column row">
+      <!-- <div class="one column row">
          <h2>Hikes Near You:</h2>
-      </div>
+      </div> -->
    </div>
-   <center>
+   <!-- <center>
       <header>
          <h3>Navigate to a Hike</h3>
       </header>
-   </center>
+   </center> -->
    <br>
    <center>
-      <div id="directionsHolderMain">
+      <div id="directionsHolderMain" hidden>
          <form action="https://maps.google.com/maps" method="get" target="_blank">
             <label>From:</label>
-            <input type="text" name="saddr" >
+            <div class="ui small input">
+               <input type="text" name="saddr" placeholder="Starting Location" >
+            </div>
             <label>To:</label>
-            <input type="text" name="daddr">
+            <div class="ui small input">
+               <input type="text" name="daddr" placeholder="Destination Location">
+            </div>
          </form>
-         <button type="button" onclick="navigateToTrail(this)" style="margin-top:20px;">Get Directions in Google Maps
+         <button type="button" onclick="navigateToTrail(this)" class="ui large button" style="margin-top:.8em; margin-bottom:.8em;">Get Directions in Google Maps
             <i class="arrow alternate circle right icon"></i>
          </button>
       </div>
