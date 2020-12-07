@@ -50,7 +50,7 @@
       <div class="two column row">
          <div class="ui search">
             <input id="Hike_Search_Bar" class="prompt" type="search" placeholder="Enter a City, State or Zip code..."
-               size="30" results>
+               size="30" results autofocus>
          </div>
          <button id="Search_Button" class="ui inverted green button" type="submit" onclick="geolocate()">SEARCH</button>
       </div>
@@ -66,11 +66,11 @@
    <br>
    <center>
       <div id="directionsHolderMain">
-         <form action="https://maps.google.com/maps" method="get">
+         <form action="https://maps.google.com/maps" method="get" target="_blank">
             <label>From:</label>
-            <input id="from" type="text">
+            <input id="from" type="text" name="saddr" >
             <label>To:</label>
-            <input id="to" type="text">
+            <input id="to" type="text" name="daddr">
          </form>
          <button type="button" onclick="navigateToTrail(this)" style="margin-top:20px;">Get Directions in Google Maps
             <i class="arrow alternate circle right icon"></i>
@@ -79,7 +79,7 @@
 
    </center>
    <!-- This is a test div used for showing directions elements for a trail -->
-   <div id="directionsHolder" style="display: none;">
+   <!-- <div id="directionsHolder" style="display: none;">
       <form action="https://maps.google.com/maps" method="get">
          <label>From:</label>
          <input type="text">
@@ -89,7 +89,8 @@
       <button type="button" onclick="navigateToTrail(this)" style="margin-top:20px;">Get Directions in Google Maps
          <i class="arrow alternate circle right icon"></i>
       </button>
-   </div>
+   </div> -->
+
    <!-- Best choice feature -->
    <div id="best_choice_feature" class="ui main text container" style="display: none;">
       <button class="ui inverted green button" onclick="showModal()">
