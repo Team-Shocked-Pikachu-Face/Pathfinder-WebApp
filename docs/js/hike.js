@@ -197,18 +197,28 @@ function createTrailLengthText(trail, newTrailDiv) {
     let trailLengthText = document.createTextNode(
         "Length: " + trail.length + " miles"
     );
-    let gearButton = document.createElement("p");
+
+    let gearButton = document.createElement("button");
+    gearButton.setAttribute("class", "ui blue button");
+    gearButton.textContent = "Gear Recommendations";
+    gearButton.style.padding = ".5em 1em";
+    gearButton.style.marginBottom = "1em";
+
+
     let backpackImg = document.createElement("img");
 
     backpackImg.src = "./images/backpackButton.jpg";
+    backpackImg.style.height = "2em";
     backpackImg.style.width = "auto";
-    backpackImg.style.height = "30px";
+    backpackImg.style.padding = "0em";
+    backpackImg.style.marginLeft = ".5em";
+
     backpackImg.setAttribute("title", "Trail info/gear recommendations");
-    backpackImg.setAttribute("class", "trail_info");
-    backpackImg.onclick = (function (trail) {
+    backpackImg.setAttribute("class", "trail_info ui middle aligned fluid circular image");
+    gearButton.onclick = (function (trail) {
         return function () {
             sessionStorage.setItem("trail", JSON.stringify(trail));
-            window.location.href = "recommend.html";
+            window.open("recommend.html", "_blank")
         };
     })(trail);
 
@@ -287,7 +297,7 @@ function navigateToTrail(thisTrail) {
     // Find the location of the form attached to this button
     let formNode = thisTrail.parentNode.querySelector("form");
     console.log("formNode", formNode);
-   
+
     // Get input nodes
     fromNode = formNode.querySelector("input[name='saddr']");
     toNode = formNode.querySelector("input[name='daddr']");
