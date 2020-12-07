@@ -8,7 +8,7 @@ Use the app to create a profile, search for hiking trails nearby, navigate to tr
 
 To begin using Pathfinder, click the url below:
 
-https://team-shocked-pikachu-face.github.io/Pathfinder-WebApp/hike.html
+https://team-shocked-pikachu-face.github.io/Pathfinder-WebApp/index.html
 
 If for any reason the url above is not functioning, the latest release of pathfinder can be downloaded here:
 
