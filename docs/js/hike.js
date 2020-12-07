@@ -55,12 +55,12 @@ function autoCompleteLocationSearchBar() {
         var place = autocomplete.getPlace();
 
         // If the user enters a place that doesn't exist, return.
-        if (!place.geometry) {
-            window.alert(
-                "No details available for input: '" + place.name + "'"
-            );
-            return;
-        }
+      //   if (!place.geometry) {
+      //       window.alert(
+      //           "No details available for input: '" + place.name + "'"
+      //       );
+      //       return;
+      //   }
 
         // instantiate an array to store address suggestions
         var address = "";
@@ -456,3 +456,10 @@ function hideNoTrailsFoundMessage() {
 
 // start the autocomplete functionality when the page loads
 google.maps.event.addDomListener(window, "load", autoCompleteLocationSearchBar);
+
+// if user uses enter instead of clicking on search
+document.querySelector('#Hike_Search_Bar').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      geolocate();
+    }
+});
