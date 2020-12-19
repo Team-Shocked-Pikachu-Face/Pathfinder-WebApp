@@ -132,7 +132,7 @@ function createTrailImage(trail, newTrailDiv) {
         return function () {
             // Get the trail's url and navigate to the trail page for the API
             let url = trail.url.toString();
-            window.location.href = url;
+            window.open(url, "_blank");
         };
     })(trail);
 
